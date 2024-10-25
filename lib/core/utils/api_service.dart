@@ -9,4 +9,8 @@ class ApiService {
     var response = await _dio.get('${ApiConstants.baseUrl}$endPoint?${ApiConstants.apiKey}');
     return response.data;
   }
+  Future<Map<String, dynamic>> getAndQuery({required String endPoint, required String query}) async {
+    var response = await _dio.get('${ApiConstants.baseUrl}$endPoint?${ApiConstants.apiKey}&query=$query');
+    return response.data;
+  }
 }

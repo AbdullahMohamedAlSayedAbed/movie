@@ -17,7 +17,7 @@ class TopRatedViewBody extends StatelessWidget {
             itemBuilder: (context, index) {
               return  PopularAndTopRatedCardMovie(movie: state.moviesList[index],);
             },
-            itemCount: 15);
+            itemCount: state.moviesList.length);
       } else if (state is TopRatedMoviesFailure) {
         return Center(
           child: Text(state.errMessage, style: AppStyles.errorTextStyle),

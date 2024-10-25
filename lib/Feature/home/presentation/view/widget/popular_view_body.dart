@@ -17,7 +17,7 @@ class PopularViewBody extends StatelessWidget {
             itemBuilder: (context, index) {
               return  PopularAndTopRatedCardMovie(movie: state.moviesList[index],);
             },
-            itemCount: 15);
+            itemCount: state.moviesList.length);
       } else if (state is PopularMoviesFailure) {
         return Center(
           child: Text(state.message, style: AppStyles.errorTextStyle),

@@ -4,7 +4,6 @@ import 'package:movie/Feature/home/presentation/controller/recommendations/recom
 import 'package:movie/Feature/home/presentation/view/widget/recommendations_sliver_grid_loading.dart';
 import 'package:movie/Feature/home/presentation/view/widget/sliver_grid_recommendation.dart';
 
-
 class SliverGridRecommendationBlocBuilder extends StatelessWidget {
   const SliverGridRecommendationBlocBuilder({
     super.key,
@@ -26,7 +25,9 @@ class SliverGridRecommendationBlocBuilder extends StatelessWidget {
             child: Center(child: Text(state.errMessage)),
           );
         } else {
-          return const RecommendationsSliverGridLoading();
+          return const SliverPadding(
+              padding: EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 24.0),
+              sliver: RecommendationsSliverGridLoading());
         }
       },
     );

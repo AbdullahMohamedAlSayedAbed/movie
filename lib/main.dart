@@ -4,6 +4,7 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:movie/Feature/home/domin/entities/home_entity.dart';
 
 import 'package:movie/Feature/home/presentation/view/home_view.dart';
+import 'package:movie/Feature/main_view.dart';
 import 'package:movie/core/utils/functions/setup_service_locator.dart';
 import 'package:movie/core/widgets/custom_bloc_opserver.dart';
 
@@ -23,7 +24,7 @@ class MovieApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const HomeView(),
+      home: const SimpleBottomNavigation(),
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: Colors.grey.shade900,
       )

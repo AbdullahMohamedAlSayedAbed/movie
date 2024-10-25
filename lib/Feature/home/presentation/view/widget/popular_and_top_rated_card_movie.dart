@@ -26,7 +26,7 @@ class PopularAndTopRatedCardMovie extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ImagePopularAndTopRatedWidget(image: movie.backdropPath!),
+            ImagePopularAndTopRatedWidget(image: movie.backdropPath??''),
             const SizedBox(width: 12),
             PopularAndTopRatedDetailsMovie(
               movie: movie,

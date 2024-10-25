@@ -5,6 +5,7 @@ abstract class ApiConstants {
   static const nowPlaying = 'movie/now_playing';
   static const popular = 'movie/popular';
   static const topRated = 'movie/top_rated';
+  static const search = 'search/movie';
   static String movieDetails(int movieId) => 'movie/$movieId';
   static String recommendations(int movieId) => 'movie/$movieId/recommendations';
   static const baseImageUrl = 'https://image.tmdb.org/t/p/w500';

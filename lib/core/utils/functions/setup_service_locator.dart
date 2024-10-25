@@ -7,6 +7,9 @@ import 'package:movie/Feature/home/presentation/controller/now_playing/now_playi
 import 'package:movie/Feature/home/presentation/controller/popular_movies/popular_movies_cubit.dart';
 import 'package:movie/Feature/home/presentation/controller/recommendations/recommendations_cubit.dart';
 import 'package:movie/Feature/home/presentation/controller/top_ated_movies/top_rated_movies_cubit.dart';
+import 'package:movie/Feature/search/data/remote_data/search_remote_data.dart';
+import 'package:movie/Feature/search/data/repo_impl/search_repo_impl.dart';
+import 'package:movie/Feature/search/presentation/controller/search_cubit.dart';
 import '../../../Feature/home/data/data_source/home_remote_data_source.dart';
 import '../api_service.dart';
 
@@ -44,6 +47,12 @@ void setupServiceLocator() {
       getIt.get<HomeRepository>(),
     ),
   );
+  // Register SearchCubit
+  getIt.registerFactory<SearchCubit>(
+    () => SearchCubit(
+      getIt.get<SearchRepoImpl>(),
+    ),
+  );
 
   // Register HomeRemoteDataSource as BaseHomeRemoteDataSource
   getIt.registerLazySingleton<BaseHomeRemoteDataSource>(
@@ -56,4 +65,13 @@ void setupServiceLocator() {
         // homeLocalDataSource: HomeLocalDataSourceImpl( Hive.box<HomeEntity>('homeBox')),
         homeRemoteDataSource: getIt.get<BaseHomeRemoteDataSource>()),
   );
+
+  // Register SearchRemoteData
+  getIt.registerLazySingleton<SearchRemoteData>(() => SearchRemoteData(
+        apiService: getIt.get<ApiService>(),
+      ));
+  getIt.registerLazySingleton<SearchRepoImpl>(() => SearchRepoImpl(
+         getIt.get<SearchRemoteData>(),
+      ));
+
 }
