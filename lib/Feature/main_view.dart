@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie/Feature/favourite/presentation/views/favourite_view.dart';
 import 'package:movie/Feature/home/presentation/view/home_view.dart';
-import 'package:movie/Feature/search/presentation/controller/search_cubit.dart';
-import 'package:movie/Feature/search/presentation/views/widgets/search_view.dart';
 import 'package:movie/Feature/search/presentation/views/search_view_body_bloc_provider.dart';
-import 'package:movie/core/utils/functions/setup_service_locator.dart';
 
 class SimpleBottomNavigation extends StatefulWidget {
   const SimpleBottomNavigation({super.key});

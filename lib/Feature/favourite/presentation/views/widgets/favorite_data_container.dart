@@ -2,24 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie/Feature/favourite/presentation/controllers/favorite_cubit/favourite_cubit.dart';
 import 'package:movie/Feature/home/domin/entities/movie_detailes_entity.dart';
-import 'package:movie/Feature/home/presentation/view/widget/icon_button_favorite_bloc_builder.dart';
 import 'package:movie/core/utils/app_styles.dart';
-import 'package:movie/core/utils/functions/show_genres_and_duration.dart';
 
-class CustomMovieDataDetail extends StatelessWidget {
-  const CustomMovieDataDetail({
-    super.key,
-    required this.movie,
-  });
+class FavoriteDataContainer extends StatelessWidget {
+  const FavoriteDataContainer({super.key, required this.movie});
   final MovieDetailsEntity movie;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
+    return SizedBox(
+      width: MediaQuery.of(context).size.width - 180,
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(movie.title, style: AppStyles.styles23W700),
+          const SizedBox(height: 16.0),
+          Text(
+            movie.title,
+            style: AppStyles.styles19W500,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
           const SizedBox(height: 8.0),
           Row(
             children: [
@@ -29,12 +31,12 @@ class CustomMovieDataDetail extends StatelessWidget {
                   horizontal: 8.0,
                 ),
                 decoration: BoxDecoration(
-                  color: Colors.grey[800],
+                  color: Color(0xffFF7878),
                   borderRadius: BorderRadius.circular(4.0),
                 ),
                 child: Text(
                   movie.releaseDate.split('-')[0],
-                  style: AppStyles.styles16W500,
+                  style: AppStyles.styles14W400,
                 ),
               ),
               const SizedBox(width: 16.0),
@@ -48,26 +50,24 @@ class CustomMovieDataDetail extends StatelessWidget {
                   const SizedBox(width: 4.0),
                   Text((movie.voteAverage / 2).toStringAsFixed(1),
                       style: AppStyles.styles16W500white70),
-                  const SizedBox(width: 4.0),
-                  Text(
-                    '${movie.voteAverage}',
-                    style: AppStyles.styles2W500,
-                  ),
                 ],
               ),
               const SizedBox(width: 16.0),
-              Text(showDuration(movie.runtime),
-                  style: AppStyles.styles16W500white70),
-              const SizedBox(width: 16.0),
-              IconButtonFavoriteBlocBuilder(movie: movie),
+                        IconButton(
+                icon: const Icon(Icons.delete,size: 35, color: Colors.red),
+                onPressed: () {
+                  BlocProvider.of<FavoriteCubit>(context)
+                      .removeFavorite(movie.id);
+                },
+              ),
             ],
           ),
-          const SizedBox(height: 20.0),
-          Text(movie.overview, style: AppStyles.styles14W400),
-          const SizedBox(height: 8.0),
+          const SizedBox(height: 12.0),
           Text(
-            'Genres: ${showGenres(movie.genres)}',
-            style: AppStyles.styles12W500,
+            movie.overview,
+            style: AppStyles.styles16W500white70,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
           ),
         ],
       ),

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie/Feature/home/presentation/controller/recommendations/recommendations_cubit.dart';
 import 'package:movie/Feature/home/presentation/view/widget/recommendations_sliver_grid_loading.dart';
 import 'package:movie/Feature/home/presentation/view/widget/sliver_grid_recommendation.dart';
+import 'package:movie/core/utils/app_styles.dart';
 
 class SliverGridRecommendationBlocBuilder extends StatelessWidget {
   const SliverGridRecommendationBlocBuilder({
@@ -22,7 +23,7 @@ class SliverGridRecommendationBlocBuilder extends StatelessWidget {
           );
         } else if (state is RecommendationsFailure) {
           return SliverToBoxAdapter(
-            child: Center(child: Text(state.errMessage)),
+            child: Center(child: Text(state.errMessage,style: AppStyles.errorTextStyle,)),
           );
         } else {
           return const SliverPadding(

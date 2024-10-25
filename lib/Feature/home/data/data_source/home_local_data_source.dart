@@ -5,22 +5,25 @@ abstract class HomeLocalDataSource {
   Future<void> cacheNowPlayingMovies(List<HomeEntity> movies);
   Future<List<HomeEntity>?> getNowPlayingMoviesFromCache();
   void saveMoviesData(List<HomeEntity> movies, String boxName);
+
 }
 
 class HomeLocalDataSourceImpl implements HomeLocalDataSource {
-  final Box<HomeEntity> homeBox;
+  // final Box<HomeEntity> homeBox;
 
-  HomeLocalDataSourceImpl(this.homeBox);
+  HomeLocalDataSourceImpl();
 
   @override
   Future<void> cacheNowPlayingMovies(List<HomeEntity> movies) async {
-    await homeBox.clear();
-    await homeBox.addAll(movies);
+    // await homeBox.clear();
+    // await homeBox.addAll(movies);
   }
 
   @override
   Future<List<HomeEntity>?> getNowPlayingMoviesFromCache() async {
-    return homeBox.values.toList();
+    return null;
+  
+    // return homeBox.values.toList();
   }
 
   @override
@@ -28,4 +31,5 @@ class HomeLocalDataSourceImpl implements HomeLocalDataSource {
     var box = Hive.box<HomeEntity>(boxName);
     box.addAll(movies);
   }
+
 }

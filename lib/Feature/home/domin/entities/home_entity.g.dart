@@ -19,7 +19,7 @@ class HomeEntityAdapter extends TypeAdapter<HomeEntity> {
     return HomeEntity(
       id: fields[0] as int,
       title: fields[1] as String,
-      image: fields[2] as String,
+      image: fields[2] as String?,
       backdropPath: fields[3] as String?,
       overview: fields[4] as String?,
       releaseDate: fields[5] as String?,

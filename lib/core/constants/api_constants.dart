@@ -7,7 +7,9 @@ abstract class ApiConstants {
   static const topRated = 'movie/top_rated';
   static const search = 'search/movie';
   static String movieDetails(int movieId) => 'movie/$movieId';
-  static String recommendations(int movieId) => 'movie/$movieId/recommendations';
+  static String getVideos(int movieId) => 'movie/$movieId/videos';
+  static String recommendations(int movieId) =>
+      'movie/$movieId/recommendations';
   static const baseImageUrl = 'https://image.tmdb.org/t/p/w500';
   static String imageUrl(String path) => '$baseImageUrl$path';
 }

@@ -1,16 +1,17 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:movie/Feature/home/data/data_source/home_local_data_source.dart';
 import 'package:movie/Feature/home/data/data_source/home_remote_data_source.dart';
 import 'package:movie/Feature/home/domin/entities/home_entity.dart';
 import 'package:movie/Feature/home/domin/entities/movie_detailes_entity.dart';
 import 'package:movie/Feature/home/domin/entities/recommendation_entity.dart';
+import 'package:movie/Feature/home/domin/entities/video_entity.dart';
 import 'package:movie/Feature/home/domin/repo/home_repo.dart';
 import 'package:movie/core/errors/failure.dart';
 
 class HomeRepoImpl implements HomeRepository {
   final BaseHomeRemoteDataSource homeRemoteDataSource;
-  // final HomeLocalDataSource homeLocalDataSource;
-  HomeRepoImpl({required this.homeRemoteDataSource});
+  HomeRepoImpl( {required this.homeRemoteDataSource});
   @override
   Future<Either<Failure, List<HomeEntity>>> getNowPlaying() async {
     try {
@@ -91,4 +92,18 @@ class HomeRepoImpl implements HomeRepository {
       return left(ServerFailure(e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, List<VideoEntity>>> getVideos(int movieId) async{
+    try {
+      List<VideoEntity> videos =await homeRemoteDataSource.getVideos(movieId);
+      return right(videos);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDiorError(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
+
 }
