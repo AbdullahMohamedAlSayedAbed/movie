@@ -20,7 +20,7 @@ class TopRatedViewBody extends StatelessWidget {
             itemCount: state.moviesList.length);
       } else if (state is TopRatedMoviesFailure) {
         return Center(
-          child: Text(state.errMessage, style: AppStyles.errorTextStyle),
+          child: Text(state.errMessage, style: AppStyles.errorTextStyle,softWrap: true,),
         );
       } else {
         return Padding(

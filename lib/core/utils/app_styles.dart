@@ -45,7 +45,7 @@ abstract class AppStyles {
   );
   static TextStyle errorTextStyle = TextStyle(
     color: Colors.redAccent,
-    fontSize: 16.0,
+    fontSize: 18.0,
     fontWeight: FontWeight.bold,
     fontStyle: FontStyle.italic,
     shadows: [

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie/Feature/home/presentation/controller/popular_movies/popular_movies_cubit.dart';
 import 'package:movie/Feature/home/presentation/view/widget/custom_loading_carousel_slider.dart';
 import 'package:movie/Feature/home/presentation/view/widget/item_list_view_widget.dart';
+import 'package:movie/core/utils/app_styles.dart';
 
 class CustomListViewHorizontalPopular extends StatelessWidget {
   const CustomListViewHorizontalPopular({super.key});
@@ -24,7 +25,7 @@ class CustomListViewHorizontalPopular extends StatelessWidget {
         );
       } else if (state is PopularMoviesFailure) {
         return Center(
-          child: Text(state.message),
+          child: Text(state.message, style: AppStyles.errorTextStyle,softWrap: true,),
         );
       } else {
         return ListView.separated(

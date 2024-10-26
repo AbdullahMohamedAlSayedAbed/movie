@@ -3,7 +3,9 @@ import 'package:get_it/get_it.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:movie/Feature/favourite/data/favourite_local_data_source.dart';
 import 'package:movie/Feature/favourite/presentation/controllers/favorite_cubit/favourite_cubit.dart';
+import 'package:movie/Feature/home/data/data_source/home_local_data_source.dart';
 import 'package:movie/Feature/home/data/repo_impl/home_repo_impl.dart';
+import 'package:movie/Feature/home/domin/entities/home_entity.dart';
 import 'package:movie/Feature/home/domin/entities/movie_detailes_entity.dart';
 import 'package:movie/Feature/home/domin/repo/home_repo.dart';
 import 'package:movie/Feature/home/presentation/controller/movie_detail/movie_detail_cubit.dart';
@@ -74,13 +76,18 @@ void setupServiceLocator() {
     () => HomeRemoteDataSource(apiService: getIt.get<ApiService>()),
   );
   getIt.registerLazySingleton<FavoriteLocalDataSource>(
-    () => FavoriteLocalDataSourceImpl(Hive.box<MovieDetailsEntity>('favorites')),
+    () =>
+        FavoriteLocalDataSourceImpl(Hive.box<MovieDetailsEntity>('favorites')),
   );
 
   // Register HomeRepoImpl
   getIt.registerLazySingleton<HomeRepository>(
     () => HomeRepoImpl(
-        // homeLocalDataSource: HomeLocalDataSourceImpl( Hive.box<HomeEntity>('homeBox')),
+        homeLocalDataSource: HomeLocalDataSourceImpl(
+          homeBox: Hive.box<HomeEntity>('homeBox'),
+          popularBox: Hive.box<HomeEntity>('PopularBox'),
+          topRatedBox: Hive.box<HomeEntity>('TopRatedBox'),
+        ),
         homeRemoteDataSource: getIt.get<BaseHomeRemoteDataSource>()),
   );
 

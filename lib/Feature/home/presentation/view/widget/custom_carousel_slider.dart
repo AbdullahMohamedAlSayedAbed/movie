@@ -5,6 +5,7 @@ import 'package:movie/Feature/home/presentation/controller/now_playing/now_playi
 import 'package:movie/Feature/home/presentation/view/functions/navigate_movie_detail_view.dart';
 import 'package:movie/Feature/home/presentation/view/widget/custom_loading_carousel_slider.dart';
 import 'package:movie/Feature/home/presentation/view/widget/stack_carousel_slider_widget.dart';
+import 'package:movie/core/utils/app_styles.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class CustomCarouselSlider extends StatelessWidget {
@@ -18,7 +19,8 @@ class CustomCarouselSlider extends StatelessWidget {
             items: List.generate(state.movies.length, (index) {
               return InkWell(
                   onTap: () {
-                    navigateMovieDetailView(context, id: state.movies[index].id);
+                    navigateMovieDetailView(context,
+                        id: state.movies[index].id);
                   },
                   child: StackCarouselSliderWidget(movie: state.movies[index]));
             }),
@@ -39,7 +41,11 @@ class CustomCarouselSlider extends StatelessWidget {
           return SizedBox(
             height: 400,
             child: Center(
-              child: Text(state.errMessage),
+              child: Text(
+                state.errMessage,
+                style: AppStyles.errorTextStyle,
+                softWrap: true,
+              ),
             ),
           );
         }
@@ -47,6 +53,4 @@ class CustomCarouselSlider extends StatelessWidget {
       },
     );
   }
-
-
 }

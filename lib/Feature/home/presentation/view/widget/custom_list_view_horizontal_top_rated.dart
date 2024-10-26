@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie/Feature/home/presentation/controller/top_ated_movies/top_rated_movies_cubit.dart';
 import 'package:movie/Feature/home/presentation/view/widget/custom_loading_carousel_slider.dart';
 import 'package:movie/Feature/home/presentation/view/widget/item_list_view_widget.dart';
+import 'package:movie/core/utils/app_styles.dart';
 
 class CustomListViewHorizontalTopRated extends StatelessWidget {
   const CustomListViewHorizontalTopRated({super.key});
@@ -24,7 +25,8 @@ class CustomListViewHorizontalTopRated extends StatelessWidget {
         );
       } else if (state is TopRatedMoviesFailure) {
         return Center(
-          child: Text(state.errMessage),
+          child: Text(state.errMessage, style: AppStyles.errorTextStyle,
+          softWrap: true,),
         );
       } else {
         return SizedBox(

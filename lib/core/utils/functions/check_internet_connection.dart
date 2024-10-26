@@ -1,13 +1,6 @@
-import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 Future<bool> checkInternetConnection() async {
-  var connectivityResult = await (Connectivity().checkConnectivity());
-  if (connectivityResult == ConnectivityResult.mobile ||
-      connectivityResult == ConnectivityResult.wifi) {
-    return true;
-  } else {
-    return false;
-  }
+  bool isConnected = await InternetConnectionChecker().hasConnection;
+  return isConnected;
 }
-
-

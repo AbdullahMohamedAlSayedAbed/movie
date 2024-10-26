@@ -20,7 +20,7 @@ class PopularViewBody extends StatelessWidget {
             itemCount: state.moviesList.length);
       } else if (state is PopularMoviesFailure) {
         return Center(
-          child: Text(state.message, style: AppStyles.errorTextStyle),
+          child: Text(state.message, style: AppStyles.errorTextStyle,softWrap: true,),
         );
       } else {
         return Padding(
