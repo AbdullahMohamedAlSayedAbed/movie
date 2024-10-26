@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie/Feature/favourite/presentation/controllers/favorite_cubit/favourite_cubit.dart';
 import 'package:movie/Feature/home/domin/entities/movie_detailes_entity.dart';
 import 'package:movie/Feature/home/presentation/view/widget/icon_button_favorite_bloc_builder.dart';
 import 'package:movie/core/utils/app_styles.dart';

@@ -22,6 +22,14 @@ class FavoriteItem extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
           color: const Color(0xff303030),
+          boxShadow: const [
+            BoxShadow(
+              color: Color(0x446200ee),
+              spreadRadius: 2,
+              blurRadius: 8,
+              offset: Offset(2, 4),
+            ),
+          ],
         ),
         margin: const EdgeInsets.all(8),
         padding: const EdgeInsets.all(8),

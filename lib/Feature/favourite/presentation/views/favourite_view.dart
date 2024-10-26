@@ -13,7 +13,7 @@ class FavoritesView extends StatelessWidget {
       create: (context) => getIt.get<FavoriteCubit>()..getFavorites(),
       child: const SafeArea(
         child: Padding(
-          padding: EdgeInsets.only(left: 8, right: 8, top: 20, bottom: 8),
+          padding: EdgeInsets.only(left: 8, right: 8, top: 30, bottom: 8),
           child: FavoritesViewBody(),
         ),
       ),

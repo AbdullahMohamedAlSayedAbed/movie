@@ -23,14 +23,17 @@ class TopRatedViewBody extends StatelessWidget {
           child: Text(state.errMessage, style: AppStyles.errorTextStyle),
         );
       } else {
-        return ListView.separated(
-            separatorBuilder: (context, index) => const SizedBox(height: 16),
-            itemBuilder: (context, index) {
-              return CustomLoadingCarouselSlider(
-                  heightLoading: 180,
-                  widthLoading: MediaQuery.sizeOf(context).width - 16);
-            },
-            itemCount: 15);
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: ListView.separated(
+              separatorBuilder: (context, index) => const SizedBox(height: 16),
+              itemBuilder: (context, index) {
+                return CustomLoadingCarouselSlider(
+                    heightLoading: 180,
+                    widthLoading: MediaQuery.sizeOf(context).width - 32);
+              },
+              itemCount: 15),
+        );
       }
     });
   }
