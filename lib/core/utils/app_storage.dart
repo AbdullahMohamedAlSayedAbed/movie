@@ -25,6 +25,7 @@ class AppStorage {
     await Hive.openBox<HomeEntity>('homeBox');
     await Hive.openBox<HomeEntity>('PopularBox');
     await Hive.openBox<HomeEntity>('TopRatedBox');
+    await Hive.openBox<int>('10minutes');
 
   }
 

@@ -84,6 +84,7 @@ void setupServiceLocator() {
   getIt.registerLazySingleton<HomeRepository>(
     () => HomeRepoImpl(
         homeLocalDataSource: HomeLocalDataSourceImpl(
+          timestampsBox: Hive.box<int>('10minutes'),
           homeBox: Hive.box<HomeEntity>('homeBox'),
           popularBox: Hive.box<HomeEntity>('PopularBox'),
           topRatedBox: Hive.box<HomeEntity>('TopRatedBox'),

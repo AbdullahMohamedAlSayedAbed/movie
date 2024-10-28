@@ -17,4 +17,9 @@ class RecommendationsCubit extends Cubit<RecommendationsState> {
       (recommendations) => emit(RecommendationsSuccess(recommendations)),
     );
   }
+  int isActive = 0;
+  void isActiveSelected(int index) {
+    isActive = index;
+    emit(IsActiveSelected(index));
+  }
 }

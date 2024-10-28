@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:movie/core/utils/app_color.dart';
 
 abstract class AppStyles {
   static TextStyle styles23W700 = GoogleFonts.poppins(
@@ -13,6 +14,11 @@ abstract class AppStyles {
   );
   static const styles16W500 = TextStyle(
     fontSize: 16.0,
+    fontWeight: FontWeight.w500,
+  );
+  static const styles18W500 = TextStyle(
+    fontSize: 18.0,
+    color: AppColor.primaryColor,
     fontWeight: FontWeight.w500,
   );
   static const styles2W500 = TextStyle(

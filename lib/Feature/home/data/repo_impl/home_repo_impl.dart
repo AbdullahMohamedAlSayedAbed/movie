@@ -9,6 +9,7 @@ import 'package:movie/Feature/home/domin/entities/video_entity.dart';
 import 'package:movie/Feature/home/domin/repo/home_repo.dart';
 import 'package:movie/core/errors/failure.dart';
 import 'package:movie/core/utils/functions/check_internet_connection.dart';
+import 'package:movie/core/utils/functions/should_fetch_from_network.dart';
 
 class HomeRepoImpl implements HomeRepository {
   final BaseHomeRemoteDataSource homeRemoteDataSource;
@@ -18,6 +19,14 @@ class HomeRepoImpl implements HomeRepository {
   @override
   Future<Either<Failure, List<HomeEntity>>> getNowPlaying() async {
     bool isConnected = await checkInternetConnection();
+    int? lastUpdate = homeLocalDataSource
+        .getLastUpdateTimestamp(HomeLocalDataSourceImpl.nowPlayingTimestampKey);
+          if (!shouldFetchFromNetwork(lastUpdate)) {
+      final moviesList = homeLocalDataSource.getNowPlayingMoviesFromCache();
+      if (moviesList != null && moviesList.isNotEmpty) {
+        return right(moviesList);
+      }
+    }
     try {
       if (isConnected) {
         List<HomeEntity> moviesList =
@@ -46,6 +55,14 @@ class HomeRepoImpl implements HomeRepository {
   @override
   Future<Either<Failure, List<HomeEntity>>> getPopularMovies() async {
     bool isConnected = await checkInternetConnection();
+        int? lastUpdate = homeLocalDataSource
+        .getLastUpdateTimestamp(HomeLocalDataSourceImpl.popularMoviesTimestampKey);
+    if (!shouldFetchFromNetwork(lastUpdate)) {
+      final moviesList = homeLocalDataSource.getPopularMoviesFromCache();
+      if (moviesList != null && moviesList.isNotEmpty) {
+        return right(moviesList);
+      }
+    }
     try {
       if (isConnected) {
         List<HomeEntity> moviesList =
@@ -73,6 +90,14 @@ class HomeRepoImpl implements HomeRepository {
   @override
   Future<Either<Failure, List<HomeEntity>>> getTopRatedMovies() async {
     bool isConnected = await checkInternetConnection();
+        int? lastUpdate = homeLocalDataSource
+        .getLastUpdateTimestamp(HomeLocalDataSourceImpl.topRatedMoviesTimestampKey);
+    if (!shouldFetchFromNetwork(lastUpdate)) {
+      final moviesList = homeLocalDataSource.getTopRatedMoviesFromCache();
+      if (moviesList != null && moviesList.isNotEmpty) {
+        return right(moviesList);
+      }
+    }
     try {
       if (isConnected) {
         List<HomeEntity> moviesList =

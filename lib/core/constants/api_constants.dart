@@ -10,6 +10,7 @@ abstract class ApiConstants {
   static String getVideos(int movieId) => 'movie/$movieId/videos';
   static String recommendations(int movieId) =>
       'movie/$movieId/recommendations';
+  static String getCastPath(int movieId) => 'movie/$movieId/credits';
   static const baseImageUrl = 'https://image.tmdb.org/t/p/w500';
   static String imageUrl(String path) => '$baseImageUrl$path';
 }

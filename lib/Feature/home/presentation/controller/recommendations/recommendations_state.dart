@@ -21,3 +21,9 @@ final class RecommendationsFailure extends RecommendationsState {
   @override
   List<Object> get props => [errMessage];
 }
+final class IsActiveSelected extends RecommendationsState {
+  final int index;
+  const IsActiveSelected(this.index);
+  @override
+  List<Object> get props => [index];
+}

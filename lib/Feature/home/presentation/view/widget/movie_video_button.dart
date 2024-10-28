@@ -7,20 +7,13 @@ class MovieVideoButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Card(
-        elevation: 10,
-        shape: BeveledRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
-        color: Colors.red,
-        child: const Padding(
-          padding: EdgeInsets.all(10.0),
-          child: Icon(
-            Icons.play_arrow_sharp,
-            color: Colors.white,
-          ),
-        ),
+    return const CircleAvatar(
+      radius: 28,
+      backgroundColor: Colors.red,
+      child: Icon(
+        Icons.play_arrow_sharp,
+        color: Colors.white,
+        size: 50,
       ),
     );
   }

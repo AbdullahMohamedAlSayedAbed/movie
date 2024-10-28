@@ -3,6 +3,7 @@ import 'package:movie/Feature/favourite/presentation/views/widgets/favorite_data
 import 'package:movie/Feature/home/domin/entities/movie_detailes_entity.dart';
 import 'package:movie/Feature/home/presentation/view/functions/navigate_movie_detail_view.dart';
 import 'package:movie/Feature/home/presentation/view/widget/image_popular_and_top_rated_widget.dart';
+import 'package:movie/core/utils/app_color.dart';
 
 class FavoriteItem extends StatelessWidget {
   const FavoriteItem({
@@ -24,7 +25,7 @@ class FavoriteItem extends StatelessWidget {
           color: const Color(0xff303030),
           boxShadow: const [
             BoxShadow(
-              color: Color(0x446200ee),
+              color: AppColor.secondaryColor,
               spreadRadius: 2,
               blurRadius: 8,
               offset: Offset(2, 4),

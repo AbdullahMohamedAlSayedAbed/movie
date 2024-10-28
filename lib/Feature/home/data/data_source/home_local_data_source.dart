@@ -9,17 +9,26 @@ abstract class HomeLocalDataSource {
   List<HomeEntity>? getPopularMoviesFromCache();
   Future<void> cacheTopRatedMovies(List<HomeEntity> movies);
   List<HomeEntity>? getTopRatedMoviesFromCache();
+  int? getLastUpdateTimestamp(String key);
 }
 
 class HomeLocalDataSourceImpl implements HomeLocalDataSource {
   final Box<HomeEntity> homeBox;
   final Box<HomeEntity> popularBox;
   final Box<HomeEntity> topRatedBox;
+  final Box<int> timestampsBox;
 
   HomeLocalDataSourceImpl(
-      {required this.homeBox,
+      {required this.timestampsBox,
+      required this.homeBox,
       required this.popularBox,
       required this.topRatedBox});
+  static const nowPlayingTimestampKey =
+      'nowPlayingTimestamp'; // NEW: مفتاح توقيت Now Playing
+  static const popularMoviesTimestampKey =
+      'popularMoviesTimestamp'; // NEW: مفتاح توقيت Popular Movies
+  static const topRatedMoviesTimestampKey =
+      'topRatedMoviesTimestamp'; // NEW: مفتاح توقيت Top Rated Movies
 
   @override
   Future<void> cacheNowPlayingMovies(List<HomeEntity> movies) async {
@@ -58,5 +67,10 @@ class HomeLocalDataSourceImpl implements HomeLocalDataSource {
   @override
   List<HomeEntity>? getTopRatedMoviesFromCache() {
     return topRatedBox.values.toList();
+  }
+
+  @override
+  int? getLastUpdateTimestamp(String key) {
+    return timestampsBox.get(key);
   }
 }
