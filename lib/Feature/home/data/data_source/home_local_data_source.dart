@@ -10,6 +10,7 @@ abstract class HomeLocalDataSource {
   Future<void> cacheTopRatedMovies(List<HomeEntity> movies);
   List<HomeEntity>? getTopRatedMoviesFromCache();
   int? getLastUpdateTimestamp(String key);
+  List<HomeEntity>? getMoviesByPageFromCache(String boxName);
 }
 
 class HomeLocalDataSourceImpl implements HomeLocalDataSource {
@@ -72,5 +73,11 @@ class HomeLocalDataSourceImpl implements HomeLocalDataSource {
   @override
   int? getLastUpdateTimestamp(String key) {
     return timestampsBox.get(key);
+  }
+
+  @override
+  List<HomeEntity>? getMoviesByPageFromCache(String boxName) {
+    var box = Hive.box<HomeEntity>(boxName);
+    return box.values.toList();
   }
 }

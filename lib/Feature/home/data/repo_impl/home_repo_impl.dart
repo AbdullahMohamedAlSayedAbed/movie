@@ -7,8 +7,10 @@ import 'package:movie/Feature/home/domin/entities/movie_detailes_entity.dart';
 import 'package:movie/Feature/home/domin/entities/recommendation_entity.dart';
 import 'package:movie/Feature/home/domin/entities/video_entity.dart';
 import 'package:movie/Feature/home/domin/repo/home_repo.dart';
+import 'package:movie/core/constants/name_hive_box.dart';
 import 'package:movie/core/errors/failure.dart';
 import 'package:movie/core/utils/functions/check_internet_connection.dart';
+import 'package:movie/core/utils/functions/save_movies_data.dart';
 import 'package:movie/core/utils/functions/should_fetch_from_network.dart';
 
 class HomeRepoImpl implements HomeRepository {
@@ -86,7 +88,58 @@ class HomeRepoImpl implements HomeRepository {
       return left(ServerFailure(e.toString()));
     }
   }
-
+  @override
+  Future<Either<Failure, List<HomeEntity>>> getPopularPaginationMovies({required int page}) async{
+    bool isConnected = await checkInternetConnection();
+    try {
+      if (isConnected) {
+        List<HomeEntity> moviesList =
+            await homeRemoteDataSource.getPopularPaginationMovies(page: page);
+         saveMoviesData(moviesList, NameHiveBox.popularBox);
+        return right(moviesList);
+      } else {
+        List<HomeEntity>? moviesList =
+            homeLocalDataSource.getMoviesByPageFromCache(NameHiveBox.popularBox);
+        if (moviesList != null && moviesList.isNotEmpty) {
+          return right(moviesList);
+        } else {
+          return left(ServerFailure(
+              "No internet connection and no cached data available."));
+        }
+      }
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDiorError(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
+  @override
+  Future<Either<Failure, List<HomeEntity>>> getTopRatedPaginationMovies({required int page}) async{
+      bool isConnected = await checkInternetConnection();
+    try {
+      if (isConnected) {
+        List<HomeEntity> moviesList =
+            await homeRemoteDataSource.getTopRatedPaginationMovies(page: page);
+         saveMoviesData(moviesList, NameHiveBox.topRatedBox);
+        return right(moviesList);
+      } else {
+        List<HomeEntity>? moviesList =
+            homeLocalDataSource.getMoviesByPageFromCache(NameHiveBox.topRatedBox);
+        if (moviesList != null && moviesList.isNotEmpty) {
+          return right(moviesList);
+        } else {
+          return left(ServerFailure(
+              "No internet connection and no cached data available."));
+        }
+      }
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDiorError(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
   @override
   Future<Either<Failure, List<HomeEntity>>> getTopRatedMovies() async {
     bool isConnected = await checkInternetConnection();

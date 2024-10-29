@@ -25,4 +25,16 @@ final class PopularMoviesFailure extends PopularMoviesState {
   @override
   List<Object> get props => [message];
 }
+final class PopularMoviesPaginationLoading extends PopularMoviesState {}
+
+
+
+final class PopularMoviesPaginationFailure extends PopularMoviesState {
+  final String errMessage;
+  const PopularMoviesPaginationFailure(this.errMessage);
+
+
+  @override
+  List<Object> get props => [errMessage];
+}
 

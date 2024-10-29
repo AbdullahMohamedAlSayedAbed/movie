@@ -17,6 +17,8 @@ import 'package:movie/Feature/home/presentation/controller/videos_cubit/videos_c
 import 'package:movie/Feature/search/data/remote_data/search_remote_data.dart';
 import 'package:movie/Feature/search/data/repo_impl/search_repo_impl.dart';
 import 'package:movie/Feature/search/presentation/controller/search_cubit.dart';
+import 'package:movie/core/constants/api_constants.dart';
+import 'package:movie/core/constants/name_hive_box.dart';
 import '../../../Feature/home/data/data_source/home_remote_data_source.dart';
 import '../api_service.dart';
 
@@ -25,7 +27,11 @@ final getIt = GetIt.instance;
 void setupServiceLocator() {
   // Register ApiService
   getIt.registerLazySingleton<ApiService>(
-    () => ApiService(Dio()),
+    () => ApiService(Dio(BaseOptions(
+      baseUrl: ApiConstants.baseUrl,
+      connectTimeout: const Duration(seconds: 10),
+      receiveTimeout: const Duration(seconds: 10),
+    ))),
   );
 
   // Register HomeCubit
@@ -77,17 +83,17 @@ void setupServiceLocator() {
   );
   getIt.registerLazySingleton<FavoriteLocalDataSource>(
     () =>
-        FavoriteLocalDataSourceImpl(Hive.box<MovieDetailsEntity>('favorites')),
+        FavoriteLocalDataSourceImpl(Hive.box<MovieDetailsEntity>(NameHiveBox.favorites)),
   );
 
   // Register HomeRepoImpl
   getIt.registerLazySingleton<HomeRepository>(
     () => HomeRepoImpl(
         homeLocalDataSource: HomeLocalDataSourceImpl(
-          timestampsBox: Hive.box<int>('10minutes'),
-          homeBox: Hive.box<HomeEntity>('homeBox'),
-          popularBox: Hive.box<HomeEntity>('PopularBox'),
-          topRatedBox: Hive.box<HomeEntity>('TopRatedBox'),
+          timestampsBox: Hive.box<int>(NameHiveBox.timestampsBox),
+          homeBox: Hive.box<HomeEntity>(NameHiveBox.homeBox),
+          popularBox: Hive.box<HomeEntity>(NameHiveBox.popularBox),
+          topRatedBox: Hive.box<HomeEntity>(NameHiveBox.topRatedBox),
         ),
         homeRemoteDataSource: getIt.get<BaseHomeRemoteDataSource>()),
   );

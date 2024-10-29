@@ -13,11 +13,11 @@ abstract class BaseHomeRemoteDataSource {
   Future<List<HomeEntity>> getNowPlayingMovies();
   Future<List<HomeEntity>> getPopularMovies();
   Future<List<HomeEntity>> getTopRatedMovies();
+  Future<List<HomeEntity>> getPopularPaginationMovies({int page = 1});
+  Future<List<HomeEntity>> getTopRatedPaginationMovies({int page = 1});
   Future<MovieDetailsEntity> getMovieDetails(int movieId);
   Future<List<RecommendationEntity>> getRecommendations(int movieId);
   Future<List<VideoEntity>> getVideos(int movieId);
-  
-
 }
 
 class HomeRemoteDataSource extends BaseHomeRemoteDataSource {
@@ -41,6 +41,26 @@ class HomeRemoteDataSource extends BaseHomeRemoteDataSource {
   @override
   Future<List<HomeEntity>> getTopRatedMovies() async {
     final response = await apiService.get(endPoint: ApiConstants.topRated);
+    List<HomeEntity> moviesList = getMoviesList(response);
+    return moviesList;
+  }
+
+  @override
+  Future<List<HomeEntity>> getPopularPaginationMovies({int page = 1}) async {
+    final response = await apiService.getAndPagination(
+      endPoint: ApiConstants.popular,
+      page: page,
+    );
+    List<HomeEntity> moviesList = getMoviesList(response);
+    return moviesList;
+  }
+
+  @override
+  Future<List<HomeEntity>> getTopRatedPaginationMovies({int page = 1}) async {
+    final response = await apiService.getAndPagination(
+      endPoint: ApiConstants.topRated,
+      page: page,
+    );
     List<HomeEntity> moviesList = getMoviesList(response);
     return moviesList;
   }
@@ -77,15 +97,16 @@ class HomeRemoteDataSource extends BaseHomeRemoteDataSource {
     }
     return recommendationList;
   }
-  
+
   @override
-  Future<List<VideoEntity>> getVideos(int movieId) async{
+  Future<List<VideoEntity>> getVideos(int movieId) async {
     final response =
         await apiService.get(endPoint: ApiConstants.getVideos(movieId));
     List<VideoEntity> videos = getVideosList(response);
     return videos;
   }
-   List<VideoEntity> getVideosList(Map<String, dynamic> data) {
+
+  List<VideoEntity> getVideosList(Map<String, dynamic> data) {
     List<VideoEntity> videoList = [];
     for (var movie in data['results']) {
       videoList.add(VideoModel.fromJson(movie));

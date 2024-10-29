@@ -24,3 +24,11 @@ final class TopRatedMoviesSuccess extends TopRatedMoviesState {
   @override
   List<Object> get props => [moviesList];
 }
+final class TopRatedMoviesPaginationLoading extends TopRatedMoviesState {}
+
+final class TopRatedMoviesPaginationFailure extends TopRatedMoviesState {
+  final String errMessage;
+  const TopRatedMoviesPaginationFailure(this.errMessage);
+  @override
+  List<Object> get props => [errMessage];
+}

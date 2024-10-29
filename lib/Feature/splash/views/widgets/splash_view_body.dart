@@ -25,7 +25,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
     return Future.delayed(
       const Duration(seconds: 3),
       () {
-        Navigator.push(context, MaterialPageRoute(
+        Navigator.pushReplacement( context, MaterialPageRoute(
           builder: (context) {
             return const SimpleBottomNavigation();
           },

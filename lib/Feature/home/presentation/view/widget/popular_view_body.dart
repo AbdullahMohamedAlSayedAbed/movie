@@ -1,31 +1,74 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie/Feature/home/domin/entities/home_entity.dart';
 import 'package:movie/Feature/home/presentation/controller/popular_movies/popular_movies_cubit.dart';
 import 'package:movie/Feature/home/presentation/view/widget/custom_loading_carousel_slider.dart';
 import 'package:movie/Feature/home/presentation/view/widget/popular_and_top_rated_card_movie.dart';
 import 'package:movie/core/utils/app_styles.dart';
+import 'package:movie/core/utils/functions/build_show_toast_functions.dart';
 
-class PopularViewBody extends StatelessWidget {
+class PopularViewBody extends StatefulWidget {
   const PopularViewBody({super.key});
 
   @override
+  State<PopularViewBody> createState() => _PopularViewBodyState();
+}
+
+class _PopularViewBodyState extends State<PopularViewBody> {
+late  ScrollController _scrollController;
+
+  @override
+  void initState() {
+    _scrollController = ScrollController();
+    super.initState();
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels >=
+          _scrollController.position.maxScrollExtent * .9) {
+        context.read<PopularMoviesCubit>().getPopularPaginationMovies();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  List<HomeEntity> movies = [];
+  @override
   Widget build(BuildContext context) {
-    return BlocBuilder<PopularMoviesCubit, PopularMoviesState>(
-        builder: (context, state) {
+    return BlocConsumer<PopularMoviesCubit, PopularMoviesState>(
+        listener: (context, state) {
+      if (state is PopularMoviesPaginationFailure) {
+        buildShowToastFunction(message: state.errMessage);
+      }
       if (state is PopularMoviesSuccess) {
+        movies.addAll(state.moviesList);
+      }
+    }, builder: (context, state) {
+      if (state is PopularMoviesSuccess ||
+          state is PopularMoviesPaginationFailure ||
+          state is PopularMoviesPaginationLoading) {
         return ListView.builder(
             itemBuilder: (context, index) {
-              return  PopularAndTopRatedCardMovie(movie: state.moviesList[index],);
+              return PopularAndTopRatedCardMovie(
+                  movie: movies[index]);
             },
-            itemCount: state.moviesList.length);
+            itemCount: movies.length);
       } else if (state is PopularMoviesFailure) {
         return Center(
-          child: Text(state.message, style: AppStyles.errorTextStyle,softWrap: true,),
+          child: Text(
+            state.message,
+            style: AppStyles.errorTextStyle,
+            softWrap: true,
+          ),
         );
       } else {
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8),
           child: ListView.separated(
+              controller: _scrollController,
               separatorBuilder: (context, index) => const SizedBox(height: 16),
               itemBuilder: (context, index) {
                 return CustomLoadingCarouselSlider(

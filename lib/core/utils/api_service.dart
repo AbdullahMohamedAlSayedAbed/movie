@@ -6,11 +6,20 @@ class ApiService {
   ApiService(this._dio);
 
   Future<Map<String, dynamic>> get({required String endPoint}) async {
-    var response = await _dio.get('${ApiConstants.baseUrl}$endPoint?${ApiConstants.apiKey}');
+    var response = await _dio.get('$endPoint?${ApiConstants.apiKey}');
     return response.data;
   }
   Future<Map<String, dynamic>> getAndQuery({required String endPoint, required String query}) async {
-    var response = await _dio.get('${ApiConstants.baseUrl}$endPoint?${ApiConstants.apiKey}&query=$query');
+    var response = await _dio.get('$endPoint?${ApiConstants.apiKey}&query=$query');
+    return response.data;
+  }
+  Future<Map<String, dynamic>> getAndPagination({
+    required String endPoint,
+    int page = 1,
+  }) async {
+    var response = await _dio.get(
+      '$endPoint?${ApiConstants.apiKey}&page=$page',
+    );
     return response.data;
   }
 }

@@ -9,6 +9,8 @@ abstract class HomeRepository {
   Future<Either<Failure, List<HomeEntity>>> getNowPlaying();
   Future<Either<Failure, List<HomeEntity>>> getPopularMovies();
   Future<Either<Failure, List<HomeEntity>>> getTopRatedMovies();
+  Future<Either<Failure, List<HomeEntity>>> getPopularPaginationMovies({required int page});
+  Future<Either<Failure, List<HomeEntity>>> getTopRatedPaginationMovies({required int page});
   Future<Either<Failure, MovieDetailsEntity>> getMovieDetails(int movieId);
   Future<Either<Failure, List<RecommendationEntity>>> getMovieRecommendations(
       int movieId);
