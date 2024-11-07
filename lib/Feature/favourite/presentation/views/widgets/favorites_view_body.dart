@@ -14,7 +14,11 @@ class FavoritesViewBody extends StatelessWidget {
         if (state is FavoritesSuccess) {
           final movies = state.movies;
           if (movies.isEmpty) {
-            return const Center(child: Text('there is no favorite movies'));
+            return const Center(
+                child: Text(
+              'there is no favorite movies',
+              style: AppStyles.styles24,
+            ));
           }
           return ListView.builder(
             itemCount: movies.length,
