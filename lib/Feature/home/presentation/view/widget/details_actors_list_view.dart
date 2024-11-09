@@ -4,6 +4,7 @@ import 'package:movie/Feature/home/presentation/controller/casts_cubit/casts_cub
 import 'package:movie/Feature/home/presentation/view/widget/cast_item_image_loading.dart';
 import 'package:movie/Feature/home/presentation/view/widget/details_actors_item.dart';
 import 'package:movie/core/utils/app_styles.dart';
+import 'package:movie/core/widgets/custom_error_widget.dart';
 
 class ActorsListView extends StatelessWidget {
   const ActorsListView({super.key});
@@ -44,13 +45,7 @@ class ActorsListView extends StatelessWidget {
             );
           }
         } else if (state is CastsFailure) {
-          return Center(
-            child: Text(
-              state.errMessage,
-              style: AppStyles.errorTextStyle,
-              softWrap: true,
-            ),
-          );
+          return CustomErrorWidget(errMessage: state.errMessage);
         } else {
           return Padding(
             padding: const EdgeInsets.only(left: 15, bottom: 15),

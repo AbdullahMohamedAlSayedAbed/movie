@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:skeletonizer/skeletonizer.dart';
+import 'package:movie/core/widgets/custom_loading.dart';
 
 class CustomLoadingCarouselSlider extends StatelessWidget {
   const CustomLoadingCarouselSlider({
@@ -9,7 +9,7 @@ class CustomLoadingCarouselSlider extends StatelessWidget {
  final double? widthLoading;
   @override
   Widget build(BuildContext context) {
-    return Skeletonizer(
+    return CustomLoading(
       enabled: true,
       child: Container(
         width:widthLoading?? double.infinity,

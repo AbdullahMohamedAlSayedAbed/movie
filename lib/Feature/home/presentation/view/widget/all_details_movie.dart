@@ -5,6 +5,7 @@ import 'package:movie/Feature/home/presentation/view/widget/custom_image_details
 import 'package:movie/Feature/home/presentation/view/widget/custom_movie_data_detail.dart';
 import 'package:movie/Feature/home/presentation/view/widget/movie_detail_loading_widget.dart';
 import 'package:movie/core/utils/app_styles.dart';
+import 'package:movie/core/widgets/custom_error_widget.dart';
 
 class AllDetailsMovie extends StatelessWidget {
   const AllDetailsMovie({
@@ -31,11 +32,10 @@ class AllDetailsMovie extends StatelessWidget {
           }
           if (state is MovieDetailFailure) {
             return SafeArea(
-              child: Center(
-                  child: Padding(
+              child: Padding(
                 padding: const EdgeInsets.all(30),
-                child: Text(state.errMessage, style: AppStyles.errorTextStyle),
-              )),
+                child: CustomErrorWidget(errMessage: state.errMessage),
+              ),
             );
           } else {
             return const MovieDetailLoadingWidget();

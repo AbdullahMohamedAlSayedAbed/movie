@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:skeletonizer/skeletonizer.dart';
+import 'package:movie/core/widgets/custom_loading.dart';
 
 class CastItemImageLoading extends StatelessWidget {
   const CastItemImageLoading({
@@ -8,6 +8,6 @@ class CastItemImageLoading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Skeletonizer(enabled: true, child: CircleAvatar(radius: 50));
+    return const CustomLoading(enabled: true, child: CircleAvatar(radius: 50));
   }
 }

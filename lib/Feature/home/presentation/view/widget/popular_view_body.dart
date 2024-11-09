@@ -6,6 +6,7 @@ import 'package:movie/Feature/home/presentation/view/widget/custom_loading_carou
 import 'package:movie/Feature/home/presentation/view/widget/popular_and_top_rated_card_movie.dart';
 import 'package:movie/core/utils/app_styles.dart';
 import 'package:movie/core/utils/functions/build_show_toast_functions.dart';
+import 'package:movie/core/widgets/custom_error_widget.dart';
 
 class PopularViewBody extends StatefulWidget {
   const PopularViewBody({super.key});
@@ -15,7 +16,7 @@ class PopularViewBody extends StatefulWidget {
 }
 
 class _PopularViewBodyState extends State<PopularViewBody> {
-late  ScrollController _scrollController;
+  late ScrollController _scrollController;
 
   @override
   void initState() {
@@ -51,20 +52,13 @@ late  ScrollController _scrollController;
           state is PopularMoviesPaginationFailure ||
           state is PopularMoviesPaginationLoading) {
         return ListView.builder(
-          controller:_scrollController ,
+            controller: _scrollController,
             itemBuilder: (context, index) {
-              return PopularAndTopRatedCardMovie(
-                  movie: movies[index]);
+              return PopularAndTopRatedCardMovie(movie: movies[index]);
             },
             itemCount: movies.length);
       } else if (state is PopularMoviesFailure) {
-        return Center(
-          child: Text(
-            state.message,
-            style: AppStyles.errorTextStyle,
-            softWrap: true,
-          ),
-        );
+        return CustomErrorWidget(errMessage: state.message);
       } else {
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8),

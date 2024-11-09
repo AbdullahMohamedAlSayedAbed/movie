@@ -6,6 +6,7 @@ import 'package:movie/Feature/home/presentation/view/functions/navigate_movie_de
 import 'package:movie/Feature/home/presentation/view/widget/custom_loading_carousel_slider.dart';
 import 'package:movie/Feature/home/presentation/view/widget/stack_carousel_slider_widget.dart';
 import 'package:movie/core/utils/app_styles.dart';
+import 'package:movie/core/widgets/custom_error_widget.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class CustomCarouselSlider extends StatelessWidget {
@@ -40,13 +41,7 @@ class CustomCarouselSlider extends StatelessWidget {
         } else if (state is NowPlayingFailure) {
           return SizedBox(
             height: 400,
-            child: Center(
-              child: Text(
-                state.errMessage,
-                style: AppStyles.errorTextStyle,
-                softWrap: true,
-              ),
-            ),
+            child: CustomErrorWidget(errMessage: state.errMessage)
           );
         }
         return const CustomLoadingCarouselSlider();
