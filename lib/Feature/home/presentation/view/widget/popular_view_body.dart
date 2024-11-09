@@ -51,6 +51,7 @@ late  ScrollController _scrollController;
           state is PopularMoviesPaginationFailure ||
           state is PopularMoviesPaginationLoading) {
         return ListView.builder(
+          controller:_scrollController ,
             itemBuilder: (context, index) {
               return PopularAndTopRatedCardMovie(
                   movie: movies[index]);
@@ -68,7 +69,6 @@ late  ScrollController _scrollController;
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8),
           child: ListView.separated(
-              controller: _scrollController,
               separatorBuilder: (context, index) => const SizedBox(height: 16),
               itemBuilder: (context, index) {
                 return CustomLoadingCarouselSlider(

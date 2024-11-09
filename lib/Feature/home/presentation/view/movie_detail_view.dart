@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie/Feature/favourite/presentation/controllers/favorite_cubit/favourite_cubit.dart';
+import 'package:movie/Feature/home/presentation/controller/casts_cubit/casts_cubit.dart';
 import 'package:movie/Feature/home/presentation/controller/movie_detail/movie_detail_cubit.dart';
 import 'package:movie/Feature/home/presentation/controller/recommendations/recommendations_cubit.dart';
 import 'package:movie/Feature/home/presentation/controller/videos_cubit/videos_cubit.dart';
@@ -28,6 +29,10 @@ class MovieDetailView extends StatelessWidget {
         BlocProvider(
           create: (context) =>
               getIt<FavoriteCubit>(),
+        ),
+        BlocProvider(
+          create: (context) =>
+              getIt<CastsCubit>()..getCasts(id),
         ),
       ],
       child: const Scaffold(

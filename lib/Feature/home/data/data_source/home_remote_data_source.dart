@@ -1,7 +1,10 @@
+import 'package:dio/dio.dart';
+import 'package:movie/Feature/home/data/models/casts_model.dart';
 import 'package:movie/Feature/home/data/models/home_model.dart';
 import 'package:movie/Feature/home/data/models/movie_details_model.dart';
 import 'package:movie/Feature/home/data/models/recommendation_model.dart';
 import 'package:movie/Feature/home/data/models/video_model.dart';
+import 'package:movie/Feature/home/domin/entities/cast_entity.dart';
 import 'package:movie/Feature/home/domin/entities/home_entity.dart';
 import 'package:movie/Feature/home/domin/entities/movie_detailes_entity.dart';
 import 'package:movie/Feature/home/domin/entities/recommendation_entity.dart';
@@ -18,6 +21,7 @@ abstract class BaseHomeRemoteDataSource {
   Future<MovieDetailsEntity> getMovieDetails(int movieId);
   Future<List<RecommendationEntity>> getRecommendations(int movieId);
   Future<List<VideoEntity>> getVideos(int movieId);
+  Future<List<CastEntity>> getCast(int movieId);
 }
 
 class HomeRemoteDataSource extends BaseHomeRemoteDataSource {
@@ -112,5 +116,21 @@ class HomeRemoteDataSource extends BaseHomeRemoteDataSource {
       videoList.add(VideoModel.fromJson(movie));
     }
     return videoList;
+  }
+
+  @override
+  Future<List<CastEntity>> getCast(int movieId) async {
+    final response =
+        await apiService.get(endPoint: ApiConstants.getCastPath(movieId));
+    List<CastEntity> castList = getCastList(response);
+    return castList;
+  }
+
+  List<CastEntity> getCastList(Map<String, dynamic> data) {
+    List<CastEntity> castList = [];
+    for (var movie in data['cast']) {
+      castList.add(CastsModel.fromJson(movie));
+    }
+    return castList;
   }
 }

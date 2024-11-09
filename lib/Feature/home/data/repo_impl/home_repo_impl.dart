@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:movie/Feature/home/data/data_source/home_local_data_source.dart';
 import 'package:movie/Feature/home/data/data_source/home_remote_data_source.dart';
+import 'package:movie/Feature/home/domin/entities/cast_entity.dart';
 import 'package:movie/Feature/home/domin/entities/home_entity.dart';
 import 'package:movie/Feature/home/domin/entities/movie_detailes_entity.dart';
 import 'package:movie/Feature/home/domin/entities/recommendation_entity.dart';
@@ -23,7 +24,7 @@ class HomeRepoImpl implements HomeRepository {
     bool isConnected = await checkInternetConnection();
     int? lastUpdate = homeLocalDataSource
         .getLastUpdateTimestamp(HomeLocalDataSourceImpl.nowPlayingTimestampKey);
-          if (!shouldFetchFromNetwork(lastUpdate)) {
+    if (!shouldFetchFromNetwork(lastUpdate)) {
       final moviesList = homeLocalDataSource.getNowPlayingMoviesFromCache();
       if (moviesList != null && moviesList.isNotEmpty) {
         return right(moviesList);
@@ -57,8 +58,8 @@ class HomeRepoImpl implements HomeRepository {
   @override
   Future<Either<Failure, List<HomeEntity>>> getPopularMovies() async {
     bool isConnected = await checkInternetConnection();
-        int? lastUpdate = homeLocalDataSource
-        .getLastUpdateTimestamp(HomeLocalDataSourceImpl.popularMoviesTimestampKey);
+    int? lastUpdate = homeLocalDataSource.getLastUpdateTimestamp(
+        HomeLocalDataSourceImpl.popularMoviesTimestampKey);
     if (!shouldFetchFromNetwork(lastUpdate)) {
       final moviesList = homeLocalDataSource.getPopularMoviesFromCache();
       if (moviesList != null && moviesList.isNotEmpty) {
@@ -88,18 +89,20 @@ class HomeRepoImpl implements HomeRepository {
       return left(ServerFailure(e.toString()));
     }
   }
+
   @override
-  Future<Either<Failure, List<HomeEntity>>> getPopularPaginationMovies({required int page}) async{
+  Future<Either<Failure, List<HomeEntity>>> getPopularPaginationMovies(
+      {required int page}) async {
     bool isConnected = await checkInternetConnection();
     try {
       if (isConnected) {
         List<HomeEntity> moviesList =
             await homeRemoteDataSource.getPopularPaginationMovies(page: page);
-         saveMoviesData(moviesList, NameHiveBox.popularBox);
+        saveMoviesData(moviesList, NameHiveBox.popularBox);
         return right(moviesList);
       } else {
-        List<HomeEntity>? moviesList =
-            homeLocalDataSource.getMoviesByPageFromCache(NameHiveBox.popularBox);
+        List<HomeEntity>? moviesList = homeLocalDataSource
+            .getMoviesByPageFromCache(NameHiveBox.popularBox);
         if (moviesList != null && moviesList.isNotEmpty) {
           return right(moviesList);
         } else {
@@ -114,18 +117,20 @@ class HomeRepoImpl implements HomeRepository {
       return left(ServerFailure(e.toString()));
     }
   }
+
   @override
-  Future<Either<Failure, List<HomeEntity>>> getTopRatedPaginationMovies({required int page}) async{
-      bool isConnected = await checkInternetConnection();
+  Future<Either<Failure, List<HomeEntity>>> getTopRatedPaginationMovies(
+      {required int page}) async {
+    bool isConnected = await checkInternetConnection();
     try {
       if (isConnected) {
         List<HomeEntity> moviesList =
             await homeRemoteDataSource.getTopRatedPaginationMovies(page: page);
-         saveMoviesData(moviesList, NameHiveBox.topRatedBox);
+        saveMoviesData(moviesList, NameHiveBox.topRatedBox);
         return right(moviesList);
       } else {
-        List<HomeEntity>? moviesList =
-            homeLocalDataSource.getMoviesByPageFromCache(NameHiveBox.topRatedBox);
+        List<HomeEntity>? moviesList = homeLocalDataSource
+            .getMoviesByPageFromCache(NameHiveBox.topRatedBox);
         if (moviesList != null && moviesList.isNotEmpty) {
           return right(moviesList);
         } else {
@@ -140,11 +145,12 @@ class HomeRepoImpl implements HomeRepository {
       return left(ServerFailure(e.toString()));
     }
   }
+
   @override
   Future<Either<Failure, List<HomeEntity>>> getTopRatedMovies() async {
     bool isConnected = await checkInternetConnection();
-        int? lastUpdate = homeLocalDataSource
-        .getLastUpdateTimestamp(HomeLocalDataSourceImpl.topRatedMoviesTimestampKey);
+    int? lastUpdate = homeLocalDataSource.getLastUpdateTimestamp(
+        HomeLocalDataSourceImpl.topRatedMoviesTimestampKey);
     if (!shouldFetchFromNetwork(lastUpdate)) {
       final moviesList = homeLocalDataSource.getTopRatedMoviesFromCache();
       if (moviesList != null && moviesList.isNotEmpty) {
@@ -157,8 +163,7 @@ class HomeRepoImpl implements HomeRepository {
             await homeRemoteDataSource.getTopRatedMovies();
         await homeLocalDataSource.cacheTopRatedMovies(moviesList);
         return right(moviesList);
-      }else
-      {
+      } else {
         List<HomeEntity>? moviesList =
             homeLocalDataSource.getTopRatedMoviesFromCache();
         if (moviesList != null && moviesList.isNotEmpty) {
@@ -211,6 +216,19 @@ class HomeRepoImpl implements HomeRepository {
     try {
       List<VideoEntity> videos = await homeRemoteDataSource.getVideos(movieId);
       return right(videos);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDiorError(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<CastEntity>>> getCast(int movieId) async {
+    try {
+      List<CastEntity> casts = await homeRemoteDataSource.getCast(movieId);
+      return right(casts);
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDiorError(e));
