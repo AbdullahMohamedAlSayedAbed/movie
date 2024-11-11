@@ -7,7 +7,7 @@ part 'movie_detail_state.dart';
 
 class MovieDetailCubit extends Cubit<MovieDetailState> {
   MovieDetailCubit(this.homeRepository) : super(MovieDetailInitial());
-   final HomeRepository homeRepository;
+  final HomeRepository homeRepository;
 
   Future<void> getMovieDetails(int movieId) async {
     emit(MovieDetailLoading());

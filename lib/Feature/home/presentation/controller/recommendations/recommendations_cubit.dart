@@ -7,7 +7,7 @@ part 'recommendations_state.dart';
 
 class RecommendationsCubit extends Cubit<RecommendationsState> {
   RecommendationsCubit(this.homeRepository) : super(RecommendationsInitial());
-   final HomeRepository homeRepository;
+  final HomeRepository homeRepository;
 
   Future<void> getRecommendations(int movieId) async {
     emit(RecommendationsLoading());
@@ -17,6 +17,7 @@ class RecommendationsCubit extends Cubit<RecommendationsState> {
       (recommendations) => emit(RecommendationsSuccess(recommendations)),
     );
   }
+
   int isActive = 0;
   void isActiveSelected(int index) {
     isActive = index;

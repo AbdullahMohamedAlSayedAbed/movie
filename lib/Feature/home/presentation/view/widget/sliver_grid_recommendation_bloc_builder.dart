@@ -23,7 +23,11 @@ class SliverGridRecommendationBlocBuilder extends StatelessWidget {
           );
         } else if (state is RecommendationsFailure) {
           return SliverToBoxAdapter(
-            child: Center(child: Text(state.errMessage,style: AppStyles.errorTextStyle,)),
+            child: Center(
+                child: Text(
+              state.errMessage,
+              style: AppStyles.errorTextStyle,
+            )),
           );
         } else {
           return const SliverPadding(

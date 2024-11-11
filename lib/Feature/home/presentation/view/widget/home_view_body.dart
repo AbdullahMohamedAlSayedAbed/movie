@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie/Feature/home/presentation/view/widget/custom_carousel_slider.dart';
+import 'package:movie/Feature/home/presentation/view/widget/sections_get_genres_widgets.dart';
 import 'package:movie/Feature/home/presentation/view/widget/sections_popular_horizontal_list_view.dart';
 import 'package:movie/Feature/home/presentation/view/widget/sections_top_rated_horizontal_list_view.dart';
 
@@ -14,6 +15,7 @@ class HomeViewBody extends StatelessWidget {
           CustomCarouselSlider(),
           SectionsPopularHorizontalListView(),
           SectionsTopRatedHorizontalListView(),
+          SectionsGetGenresWidgets(),
           SizedBox(
             height: 24,
           )

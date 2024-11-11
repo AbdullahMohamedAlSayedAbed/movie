@@ -236,4 +236,31 @@ class HomeRepoImpl implements HomeRepository {
       return left(ServerFailure(e.toString()));
     }
   }
+  
+  @override
+  Future<Either<Failure, List<GenreEntity>>> getGenres()async {
+    try {
+      List<GenreEntity> genres =await homeRemoteDataSource.getGenres();
+      return right(genres);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDiorError(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
+  
+  @override
+  Future<Either<Failure, List<HomeEntity>>> getDiscoverMovies({int page = 1, required int id}) async{
+  try {
+    List<HomeEntity> moviesList = await homeRemoteDataSource.getDiscoverMovies(page: page, id: id);
+    return right(moviesList);
+  } catch (e) {
+    if (e is DioException) {
+      return left(ServerFailure.fromDiorError(e));
+    }
+    return left(ServerFailure(e.toString()));
+    
+  }
+  }
 }

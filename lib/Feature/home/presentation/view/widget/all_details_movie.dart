@@ -4,7 +4,6 @@ import 'package:movie/Feature/home/presentation/controller/movie_detail/movie_de
 import 'package:movie/Feature/home/presentation/view/widget/custom_image_details.dart';
 import 'package:movie/Feature/home/presentation/view/widget/custom_movie_data_detail.dart';
 import 'package:movie/Feature/home/presentation/view/widget/movie_detail_loading_widget.dart';
-import 'package:movie/core/utils/app_styles.dart';
 import 'package:movie/core/widgets/custom_error_widget.dart';
 
 class AllDetailsMovie extends StatelessWidget {

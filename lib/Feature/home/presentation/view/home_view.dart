@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie/Feature/home/presentation/controller/get_genres_cubit/get_genres_cubit.dart';
 import 'package:movie/Feature/home/presentation/controller/now_playing/now_playing_cubit.dart';
 import 'package:movie/Feature/home/presentation/controller/popular_movies/popular_movies_cubit.dart';
 import 'package:movie/Feature/home/presentation/controller/top_ated_movies/top_rated_movies_cubit.dart';
@@ -23,6 +24,10 @@ class HomeView extends StatelessWidget {
         BlocProvider(
           create: (context) =>
               getIt<TopRatedMoviesCubit>()..getTopRatedMovies(),
+        ),
+        BlocProvider(
+          create: (context) =>
+              getIt<GetGenresCubit>()..getGenres(),
         ),
       ],
       child: const HomeViewBody(),

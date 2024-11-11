@@ -13,8 +13,7 @@ class PopularView extends StatelessWidget {
     return Scaffold(
         appBar: buildAppBar(title: 'Popular Movies'),
         body: BlocProvider(
-          create: (context) =>
-              getIt<PopularMoviesCubit>()..getPopularMovies(),
+          create: (context) => getIt<PopularMoviesCubit>()..getPopularMovies(),
           child: const PopularViewBody(),
         ));
   }

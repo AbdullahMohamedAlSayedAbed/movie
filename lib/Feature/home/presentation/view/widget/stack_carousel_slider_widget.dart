@@ -46,20 +46,15 @@ class StackCarouselSliderWidget extends StatelessWidget {
                       size: 16.0,
                     ),
                     const SizedBox(width: 4.0),
-                    Text(
-                      'Now Playing'.toUpperCase(),
-                      style: AppStyles.styles16W500
-                    ),
+                    Text('Now Playing'.toUpperCase(),
+                        style: AppStyles.styles16W500),
                   ],
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 16.0),
-                child: Text(
-                  movie.title,
-                  textAlign: TextAlign.center,
-                  style: AppStyles.styles24
-                ),
+                child: Text(movie.title,
+                    textAlign: TextAlign.center, style: AppStyles.styles24),
               ),
             ],
           ),

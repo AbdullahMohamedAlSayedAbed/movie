@@ -10,7 +10,7 @@ class CollectionEntity extends Equatable {
       {required this.id,
       required this.name,
       required this.backdropPath,
-       this.parts});
+      this.parts});
 
   @override
   // TODO: implement props
@@ -25,14 +25,14 @@ class PartsEntity extends Equatable {
   final String releaseDate;
   final num voteAverage;
 
-  const PartsEntity(
-      {required this.id,
-      required this.title,
-      required this.overview,
-      required this.backdropPath,
-      required this.releaseDate,
-      required this.voteAverage,
-      });
+  const PartsEntity({
+    required this.id,
+    required this.title,
+    required this.overview,
+    required this.backdropPath,
+    required this.releaseDate,
+    required this.voteAverage,
+  });
 
   @override
   // TODO: implement props

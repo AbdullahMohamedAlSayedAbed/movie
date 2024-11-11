@@ -15,7 +15,7 @@ class HomeModel extends HomeEntity {
     return HomeModel(
         id: json['id'],
         title: json['title'],
-        image: json['poster_path'], 
+        image: json['poster_path'],
         backdropPath: json['backdrop_path'],
         overview: json['overview'],
         releaseDate: json['release_date'],

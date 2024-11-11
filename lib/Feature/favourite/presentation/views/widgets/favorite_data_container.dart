@@ -53,8 +53,8 @@ class FavoriteDataContainer extends StatelessWidget {
                 ],
               ),
               const SizedBox(width: 16.0),
-                        IconButton(
-                icon: const Icon(Icons.delete,size: 35, color: Colors.red),
+              IconButton(
+                icon: const Icon(Icons.delete, size: 35, color: Colors.red),
                 onPressed: () {
                   BlocProvider.of<FavoriteCubit>(context)
                       .removeFavorite(movie.id);

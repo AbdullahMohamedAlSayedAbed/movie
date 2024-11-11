@@ -29,7 +29,8 @@ class TopRatedMoviesCubit extends Cubit<TopRatedMoviesState> {
     if (_isLoading || _isLastPage) return;
     _isLoading = true;
     emit(TopRatedMoviesPaginationLoading());
-    final result = await homeRepository.getTopRatedPaginationMovies(page: _currentPage);
+    final result =
+        await homeRepository.getTopRatedPaginationMovies(page: _currentPage);
     result.fold(
       (failure) {
         emit(TopRatedMoviesPaginationFailure(failure.message));
@@ -38,9 +39,9 @@ class TopRatedMoviesCubit extends Cubit<TopRatedMoviesState> {
       (movies) {
         if (movies.isEmpty) {
           _isLastPage = true;
-        }else{
-        emit(TopRatedMoviesSuccess(movies));
-        _currentPage++;
+        } else {
+          emit(TopRatedMoviesSuccess(movies));
+          _currentPage++;
         }
         _isLoading = false;
       },

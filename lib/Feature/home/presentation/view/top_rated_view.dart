@@ -10,7 +10,7 @@ class TopRatedView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
         appBar: buildAppBar(title: 'Top Rated Movies'),
         body: BlocProvider(
           create: (context) =>

@@ -4,4 +4,5 @@ abstract class NameHiveBox {
   static const String popularBox = 'PopularBox';
   static const String topRatedBox = 'TopRatedBox';
   static const String favorites = 'favorites';
+  static const String genres = 'genres';
 }

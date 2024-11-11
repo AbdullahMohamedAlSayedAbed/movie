@@ -3,7 +3,8 @@ import 'package:movie/core/utils/app_styles.dart';
 
 class CustomErrorWidget extends StatelessWidget {
   const CustomErrorWidget({
-    super.key, required this.errMessage,
+    super.key,
+    required this.errMessage,
   });
   final String errMessage;
   @override

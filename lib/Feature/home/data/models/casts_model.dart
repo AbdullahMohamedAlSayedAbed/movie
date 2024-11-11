@@ -1,4 +1,3 @@
-
 import 'package:movie/Feature/home/domin/entities/cast_entity.dart';
 
 class CastsModel extends CastEntity {

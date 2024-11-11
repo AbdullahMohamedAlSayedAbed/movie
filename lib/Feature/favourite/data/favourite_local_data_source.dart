@@ -7,11 +7,12 @@ abstract class FavoriteLocalDataSource {
   void removeFavorite(int movieId);
   bool isFavorite(int movieId);
 }
+
 class FavoriteLocalDataSourceImpl implements FavoriteLocalDataSource {
-    final Box<MovieDetailsEntity> favoritesBox;
+  final Box<MovieDetailsEntity> favoritesBox;
 
   FavoriteLocalDataSourceImpl(this.favoritesBox);
-    @override
+  @override
   List<MovieDetailsEntity> getFavorites() {
     return favoritesBox.values.toList();
   }

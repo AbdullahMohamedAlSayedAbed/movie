@@ -5,7 +5,7 @@ class CollectionModel extends CollectionEntity {
       {required super.id,
       required super.name,
       required super.backdropPath,
-       super.parts});
+      super.parts});
   factory CollectionModel.fromJson(Map<String, dynamic> json) {
     return CollectionModel(
       id: json['id'],
@@ -18,13 +18,14 @@ class CollectionModel extends CollectionEntity {
 }
 
 class PartsModel extends PartsEntity {
-  const PartsModel(
-      {required super.id,
-      required super.title,
-      required super.overview,
-      required super.backdropPath,
-      required super.releaseDate,
-      required super.voteAverage,});
+  const PartsModel({
+    required super.id,
+    required super.title,
+    required super.overview,
+    required super.backdropPath,
+    required super.releaseDate,
+    required super.voteAverage,
+  });
 
   factory PartsModel.fromJson(Map<String, dynamic> json) {
     return PartsModel(

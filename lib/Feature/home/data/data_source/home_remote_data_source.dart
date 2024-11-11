@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:movie/Feature/home/data/models/casts_model.dart';
 import 'package:movie/Feature/home/data/models/home_model.dart';
 import 'package:movie/Feature/home/data/models/movie_details_model.dart';
@@ -22,6 +21,8 @@ abstract class BaseHomeRemoteDataSource {
   Future<List<RecommendationEntity>> getRecommendations(int movieId);
   Future<List<VideoEntity>> getVideos(int movieId);
   Future<List<CastEntity>> getCast(int movieId);
+  Future<List<GenreEntity>> getGenres();
+  Future<List<HomeEntity>> getDiscoverMovies({int page = 1, required int id});
 }
 
 class HomeRemoteDataSource extends BaseHomeRemoteDataSource {
@@ -132,5 +133,23 @@ class HomeRemoteDataSource extends BaseHomeRemoteDataSource {
       castList.add(CastsModel.fromJson(movie));
     }
     return castList;
+  }
+
+  @override
+  Future<List<GenreEntity>> getGenres() async {
+    final response = await apiService.get(endPoint: ApiConstants.genres);
+    List<GenreEntity> genresList = (response['genres'] as List)
+        .map((e) => GenreModel.fromJson(e) as GenreEntity)
+        .toList();
+    return genresList;
+  }
+
+  @override
+  Future<List<HomeEntity>> getDiscoverMovies(
+      {int page = 1, required int id}) async {
+    final response = await apiService.getAndPaginationAndDiscover(
+        endPoint: ApiConstants.discover, genreId: id, page: page);
+    List<HomeEntity> discoverMovies = getMoviesList(response);
+    return discoverMovies;
   }
 }

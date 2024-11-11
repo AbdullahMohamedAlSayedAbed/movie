@@ -7,7 +7,8 @@ import 'package:movie/core/constants/api_constants.dart';
 class CustomImageDetails extends StatelessWidget {
   const CustomImageDetails({
     super.key,
-    required this.imageUrl, required this.id,
+    required this.imageUrl,
+    required this.id,
   });
   final String imageUrl;
   final int id;
@@ -44,10 +45,7 @@ class CustomImageDetails extends StatelessWidget {
             fit: BoxFit.cover,
           ),
         ),
-        Positioned(
-          bottom: 10,
-          right: 10,
-          child: MovieVideWidget(movieId: id)),
+        Positioned(bottom: 10, right: 10, child: MovieVideWidget(movieId: id)),
       ],
     );
   }

@@ -28,6 +28,7 @@ class MovieVideWidget extends StatelessWidget {
       },
     );
   }
+
   Future<void> _launchUrl(String key) async {
     Uri url = Uri.parse('https://www.youtube.com/watch?v=$key');
 

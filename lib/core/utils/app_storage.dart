@@ -6,7 +6,7 @@ class AppStorage {
   static final AppStorage _instance = AppStorage._internal();
 
   // صندوق المفضلات
-   Box<MovieDetailsEntity>? _favoritesBox;
+  Box<MovieDetailsEntity>? _favoritesBox;
 
   AppStorage._internal();
 
@@ -26,7 +26,6 @@ class AppStorage {
     await Hive.openBox<HomeEntity>('PopularBox');
     await Hive.openBox<HomeEntity>('TopRatedBox');
     await Hive.openBox<int>('10minutes');
-
   }
 
   // الحصول على صندوق المفضلات

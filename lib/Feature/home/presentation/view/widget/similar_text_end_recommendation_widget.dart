@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie/Feature/home/presentation/controller/recommendations/recommendations_cubit.dart';
 import 'package:movie/Feature/home/presentation/view/widget/similar_text_widget.dart';
+
 class SimilarTextEndRecommendationWidget extends StatelessWidget {
   const SimilarTextEndRecommendationWidget({super.key});
 

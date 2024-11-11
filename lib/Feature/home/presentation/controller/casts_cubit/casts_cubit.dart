@@ -7,7 +7,7 @@ part 'casts_state.dart';
 
 class CastsCubit extends Cubit<CastsState> {
   CastsCubit(this.homeRepository) : super(CastsInitial());
-    final HomeRepository homeRepository;
+  final HomeRepository homeRepository;
 
   Future<void> getCasts(int movieId) async {
     emit(CastsLoading());

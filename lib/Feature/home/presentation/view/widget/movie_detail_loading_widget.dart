@@ -8,8 +8,7 @@ class MovieDetailLoadingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start, children: [
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       CustomLoadingCarouselSlider(
         heightLoading: MediaQuery.sizeOf(context).height * .3,
         widthLoading: MediaQuery.sizeOf(context).width,
@@ -41,7 +40,7 @@ class MovieDetailLoadingWidget extends StatelessWidget {
       ),
       const SizedBox(height: 20),
       Padding(
-         padding: const EdgeInsets.symmetric(horizontal: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         child: CustomLoadingCarouselSlider(
           heightLoading: MediaQuery.sizeOf(context).height * .2,
           widthLoading: MediaQuery.sizeOf(context).width,

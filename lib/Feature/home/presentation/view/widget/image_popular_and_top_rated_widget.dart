@@ -5,7 +5,8 @@ import 'package:movie/core/constants/api_constants.dart';
 
 class ImagePopularAndTopRatedWidget extends StatelessWidget {
   const ImagePopularAndTopRatedWidget({
-    super.key, required this.image, 
+    super.key,
+    required this.image,
   });
   final String image;
   @override
@@ -13,8 +14,7 @@ class ImagePopularAndTopRatedWidget extends StatelessWidget {
     return ClipRRect(
       borderRadius: const BorderRadius.all(Radius.circular(12)),
       child: CachedNetworkImage(
-        imageUrl: ApiConstants.imageUrl(ApiConstants.imageUrl(
-            image)),
+        imageUrl: ApiConstants.imageUrl(ApiConstants.imageUrl(image)),
         placeholder: (context, url) => const CustomLoadingCarouselSlider(
             heightLoading: 170, widthLoading: 120),
         errorWidget: (context, url, error) => const Icon(Icons.error),

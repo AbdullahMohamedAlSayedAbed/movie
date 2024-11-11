@@ -27,21 +27,21 @@ class CastEntity extends Equatable {
       required this.character,
       required this.creditId,
       required this.order});
-      
-        @override
-        // TODO: implement props
-        List<Object?> get props => [
-      adult,
-      gender,
-      id,
-      knownForDepartment,
-      name,
-      originalName,
-      popularity,
-      profilePath,
-      castId,
-      character,
-      creditId,
-      order,
-    ];
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [
+        adult,
+        gender,
+        id,
+        knownForDepartment,
+        name,
+        originalName,
+        popularity,
+        profilePath,
+        castId,
+        character,
+        creditId,
+        order,
+      ];
 }

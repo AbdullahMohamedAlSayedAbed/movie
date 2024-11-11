@@ -16,23 +16,19 @@ class MovieDetailView extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => getIt<RecommendationsCubit>()..getRecommendations(id)
+            create: (context) =>
+                getIt<RecommendationsCubit>()..getRecommendations(id)),
+        BlocProvider(
+          create: (context) => getIt<MovieDetailCubit>()..getMovieDetails(id),
         ),
         BlocProvider(
-          create: (context) =>
-              getIt<MovieDetailCubit>()..getMovieDetails(id),
+          create: (context) => getIt<VideosCubit>()..getVideos(id),
         ),
         BlocProvider(
-          create: (context) =>
-              getIt<VideosCubit>()..getVideos(id),
+          create: (context) => getIt<FavoriteCubit>(),
         ),
         BlocProvider(
-          create: (context) =>
-              getIt<FavoriteCubit>(),
-        ),
-        BlocProvider(
-          create: (context) =>
-              getIt<CastsCubit>()..getCasts(id),
+          create: (context) => getIt<CastsCubit>()..getCasts(id),
         ),
       ],
       child: const Scaffold(

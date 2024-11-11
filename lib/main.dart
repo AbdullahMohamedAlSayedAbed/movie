@@ -9,7 +9,7 @@ import 'package:movie/core/widgets/custom_bloc_opserver.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setupServiceLocator();
-   await AppStorage().initHive();
+  await AppStorage().initHive();
   Bloc.observer = CustomBlocObserver();
   runApp(const MovieApp());
 }
@@ -20,11 +20,10 @@ class MovieApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: const SplashView(),
-      theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: AppColor.scaffoldBackgroundColor,
-      )
-    );
+        debugShowCheckedModeBanner: false,
+        home: const SplashView(),
+        theme: ThemeData.dark().copyWith(
+          scaffoldBackgroundColor: AppColor.scaffoldBackgroundColor,
+        ));
   }
 }

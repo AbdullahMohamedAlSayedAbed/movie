@@ -8,7 +8,9 @@ sealed class MovieDetailState extends Equatable {
 }
 
 final class MovieDetailInitial extends MovieDetailState {}
+
 final class MovieDetailLoading extends MovieDetailState {}
+
 final class MovieDetailSuccess extends MovieDetailState {
   final MovieDetailsEntity movieDetail;
   const MovieDetailSuccess(this.movieDetail);
@@ -16,6 +18,7 @@ final class MovieDetailSuccess extends MovieDetailState {
   @override
   List<Object> get props => [movieDetail];
 }
+
 final class MovieDetailFailure extends MovieDetailState {
   final String errMessage;
   const MovieDetailFailure(this.errMessage);

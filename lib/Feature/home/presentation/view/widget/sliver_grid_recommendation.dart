@@ -23,10 +23,11 @@ class SliverGridRecommendation extends StatelessWidget {
             child: ClipRRect(
               borderRadius: const BorderRadius.all(Radius.circular(4.0)),
               child: CachedNetworkImage(
-                imageUrl: ApiConstants.imageUrl(
-                    ApiConstants.imageUrl(recommendation[index].backdropPath??'')),
-                placeholder: (context, url) => const CustomLoadingCarouselSlider(
-                    heightLoading: 180, widthLoading: 120),
+                imageUrl: ApiConstants.imageUrl(ApiConstants.imageUrl(
+                    recommendation[index].backdropPath ?? '')),
+                placeholder: (context, url) =>
+                    const CustomLoadingCarouselSlider(
+                        heightLoading: 180, widthLoading: 120),
                 errorWidget: (context, url, error) => const Icon(Icons.error),
                 height: 180.0,
                 fit: BoxFit.cover,

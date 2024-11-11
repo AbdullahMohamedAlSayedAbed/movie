@@ -4,7 +4,8 @@ import 'package:movie/core/utils/app_styles.dart';
 
 class PopularAndTopRatedDetailsMovie extends StatelessWidget {
   const PopularAndTopRatedDetailsMovie({
-    super.key, required this.movie,
+    super.key,
+    required this.movie,
   });
   final HomeEntity movie;
   @override
@@ -35,7 +36,7 @@ class PopularAndTopRatedDetailsMovie extends StatelessWidget {
                   borderRadius: BorderRadius.circular(4.0),
                 ),
                 child: Text(
-                 movie.releaseDate!.split('-')[0],
+                  movie.releaseDate!.split('-')[0],
                   style: AppStyles.styles14W400,
                 ),
               ),
@@ -50,13 +51,12 @@ class PopularAndTopRatedDetailsMovie extends StatelessWidget {
                   const SizedBox(width: 4.0),
                   Text((movie.voteAverage / 2).toStringAsFixed(1),
                       style: AppStyles.styles16W500white70),
-
                 ],
               ),
             ],
           ),
           const SizedBox(height: 12.0),
-           Text(
+          Text(
             movie.overview!,
             style: AppStyles.styles16W500white70,
             maxLines: 2,
