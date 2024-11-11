@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:movie/Feature/home/data/data_source/home_local_data_source.dart';
 import 'package:movie/Feature/home/data/data_source/home_remote_data_source.dart';
+import 'package:movie/Feature/home/domin/entities/actor_entity.dart';
 import 'package:movie/Feature/home/domin/entities/cast_entity.dart';
 import 'package:movie/Feature/home/domin/entities/home_entity.dart';
 import 'package:movie/Feature/home/domin/entities/movie_detailes_entity.dart';
@@ -236,11 +237,16 @@ class HomeRepoImpl implements HomeRepository {
       return left(ServerFailure(e.toString()));
     }
   }
-  
+
   @override
-  Future<Either<Failure, List<GenreEntity>>> getGenres()async {
+  Future<Either<Failure, List<GenreEntity>>> getGenres() async {
     try {
-      List<GenreEntity> genres =await homeRemoteDataSource.getGenres();
+      List<GenreEntity>? genres =
+          homeLocalDataSource.getGenresMoviesFromCache(NameHiveBox.genres);
+      if (genres == null &&genres!.isEmpty) {
+        genres = await homeRemoteDataSource.getGenres();
+        saveGenresMoviesData(genres, NameHiveBox.genres);
+      }
       return right(genres);
     } catch (e) {
       if (e is DioException) {
@@ -249,18 +255,32 @@ class HomeRepoImpl implements HomeRepository {
       return left(ServerFailure(e.toString()));
     }
   }
-  
+
   @override
-  Future<Either<Failure, List<HomeEntity>>> getDiscoverMovies({int page = 1, required int id}) async{
-  try {
-    List<HomeEntity> moviesList = await homeRemoteDataSource.getDiscoverMovies(page: page, id: id);
-    return right(moviesList);
-  } catch (e) {
-    if (e is DioException) {
-      return left(ServerFailure.fromDiorError(e));
+  Future<Either<Failure, List<HomeEntity>>> getDiscoverMovies(
+      {int page = 1, required int id}) async {
+    try {
+      List<HomeEntity> moviesList =
+          await homeRemoteDataSource.getDiscoverMovies(page: page, id: id);
+      return right(moviesList);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDiorError(e));
+      }
+      return left(ServerFailure(e.toString()));
     }
-    return left(ServerFailure(e.toString()));
-    
   }
+
+  @override
+  Future<Either<Failure, ActorEntity>> actorInfo(int personId) async{
+    try {
+      ActorEntity actor =await homeRemoteDataSource.actorInfo(personId);
+      return right(actor);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDiorError(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
   }
 }

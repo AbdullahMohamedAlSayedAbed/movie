@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:movie/Feature/home/domin/entities/actor_entity.dart';
 import 'package:movie/Feature/home/domin/entities/cast_entity.dart';
 import 'package:movie/Feature/home/domin/repo/home_repo.dart';
 
@@ -15,6 +16,14 @@ class CastsCubit extends Cubit<CastsState> {
     result.fold(
       (failure) => emit(CastsFailure(failure.message)),
       (movieDetails) => emit(CastsSuccess(movieDetails)),
+    );
+  }
+  Future<void> getActorInfo(int personId) async {
+    emit(ActorInfoLoading());
+    final result = await homeRepository.actorInfo(personId);
+    result.fold(
+      (failure) => emit(ActorInfoFailure(failure.message)),
+      (actorInfo) => emit(ActorInfoSuccess(actorInfo)),
     );
   }
 }

@@ -12,21 +12,15 @@ class ActorsItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        InkWell(
-          onTap: () {
-            // GoRouter.of(context)
-            //     .push(AppRouter.kActorProfileView, extra: castsModel.id);
-          },
-          child: CircleAvatar(
-            radius: 50,
-            backgroundImage: profilePath != null
-                ? CachedNetworkImageProvider(
-                    ApiConstants.imageUrl(profilePath!))
-                : null,
-            child: profilePath == null
-                ? const Icon(Icons.person, size: 50) // Icon shown if no image
-                : null,
-          ),
+        CircleAvatar(
+          radius: 50,
+          backgroundImage: profilePath != null
+              ? CachedNetworkImageProvider(
+                  ApiConstants.imageUrl(profilePath!))
+              : null,
+          child: profilePath == null
+              ? const Icon(Icons.person, size: 50) // Icon shown if no image
+              : null,
         ),
         const SizedBox(height: 5),
         SizedBox(

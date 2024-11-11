@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie/Feature/home/presentation/controller/casts_cubit/casts_cubit.dart';
+import 'package:movie/Feature/home/presentation/view/actor_info_view.dart';
 import 'package:movie/Feature/home/presentation/view/widget/cast_item_image_loading.dart';
 import 'package:movie/Feature/home/presentation/view/widget/details_actors_item.dart';
 import 'package:movie/core/widgets/custom_error_widget.dart';
@@ -25,9 +26,24 @@ class ActorsListView extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   itemCount: state.casts.length,
                   itemBuilder: (context, index) {
-                    return ActorsItem(
-                      profilePath: state.casts[index].profilePath,
-                      name: state.casts[index].name,
+                    return InkWell(
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(
+                          builder: (context) {
+                            return ActorInfoView(
+                              id: state.casts[index].id!,
+                              name: state.casts[index].name!,
+                            );
+                          },
+                        ));
+                      },
+                      child: Hero(
+                        tag: state.casts[index].id.toString(),
+                        child: ActorsItem(
+                          profilePath: state.casts[index].profilePath,
+                          name: state.casts[index].name,
+                        ),
+                      ),
                     );
                   },
                 ),

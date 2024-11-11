@@ -1,5 +1,6 @@
 import 'package:hive/hive.dart';
 import 'package:movie/Feature/home/domin/entities/home_entity.dart';
+import 'package:movie/Feature/home/domin/entities/movie_detailes_entity.dart';
 
 abstract class HomeLocalDataSource {
   Future<void> cacheNowPlayingMovies(List<HomeEntity> movies);
@@ -11,6 +12,7 @@ abstract class HomeLocalDataSource {
   List<HomeEntity>? getTopRatedMoviesFromCache();
   int? getLastUpdateTimestamp(String key);
   List<HomeEntity>? getMoviesByPageFromCache(String boxName);
+  List<GenreEntity>? getGenresMoviesFromCache(String boxName);
 }
 
 class HomeLocalDataSourceImpl implements HomeLocalDataSource {
@@ -78,6 +80,12 @@ class HomeLocalDataSourceImpl implements HomeLocalDataSource {
   @override
   List<HomeEntity>? getMoviesByPageFromCache(String boxName) {
     var box = Hive.box<HomeEntity>(boxName);
+    return box.values.toList();
+  }
+  
+  @override
+  List<GenreEntity>? getGenresMoviesFromCache(String boxName) {
+    var box = Hive.box<GenreEntity>(boxName);
     return box.values.toList();
   }
 }

@@ -41,11 +41,10 @@ class CustomImageDetails extends StatelessWidget {
             ),
             width: MediaQuery.sizeOf(context).width,
             imageUrl: ApiConstants.imageUrl(imageUrl),
-            // ضع هنا رابط صورتك
             fit: BoxFit.cover,
           ),
         ),
-        Positioned(bottom: 10, right: 10, child: MovieVideWidget(movieId: id)),
+        Positioned(bottom: 15, right: 15, child: MovieVideWidget(movieId: id)),
       ],
     );
   }

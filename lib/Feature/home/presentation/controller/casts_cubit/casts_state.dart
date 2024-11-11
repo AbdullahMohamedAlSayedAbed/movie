@@ -27,3 +27,21 @@ final class CastsFailure extends CastsState {
   @override
   List<Object> get props => [errMessage];
 }
+final class ActorInfoLoading extends CastsState {}
+
+final class ActorInfoSuccess extends CastsState {
+  final ActorEntity actorInfo;
+
+  const ActorInfoSuccess(this.actorInfo);
+
+  @override
+  List<Object> get props => [actorInfo];
+}
+
+final class ActorInfoFailure extends CastsState {
+  final String errMessage;
+
+  const ActorInfoFailure(this.errMessage);
+  @override
+  List<Object> get props => [errMessage];
+}

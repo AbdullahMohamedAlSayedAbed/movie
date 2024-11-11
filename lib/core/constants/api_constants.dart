@@ -10,6 +10,7 @@ abstract class ApiConstants {
   static const String discover = 'discover/movie';
 
   static String movieDetails(int movieId) => 'movie/$movieId';
+  static String personActor(int personId) => 'person/$personId';
   static String getVideos(int movieId) => 'movie/$movieId/videos';
   static String recommendations(int movieId) =>
       'movie/$movieId/recommendations';
