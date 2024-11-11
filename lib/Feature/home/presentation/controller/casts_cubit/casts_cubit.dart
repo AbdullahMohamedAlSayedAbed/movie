@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:movie/Feature/home/domin/entities/actor_entity.dart';
+import 'package:movie/Feature/home/domin/entities/actor_movies_entity.dart';
 import 'package:movie/Feature/home/domin/entities/cast_entity.dart';
 import 'package:movie/Feature/home/domin/repo/home_repo.dart';
 
@@ -26,4 +27,5 @@ class CastsCubit extends Cubit<CastsState> {
       (actorInfo) => emit(ActorInfoSuccess(actorInfo)),
     );
   }
+
 }

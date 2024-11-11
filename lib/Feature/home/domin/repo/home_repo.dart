@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:movie/Feature/home/domin/entities/actor_entity.dart';
+import 'package:movie/Feature/home/domin/entities/actor_movies_entity.dart';
 import 'package:movie/Feature/home/domin/entities/cast_entity.dart';
 import 'package:movie/Feature/home/domin/entities/home_entity.dart';
 import 'package:movie/Feature/home/domin/entities/movie_detailes_entity.dart';
@@ -20,6 +21,7 @@ abstract class HomeRepository {
       int movieId);
   Future<Either<Failure, List<VideoEntity>>> getVideos(int movieId);
   Future<Either<Failure, List<CastEntity>>> getCast(int movieId);
+  Future<Either<Failure, List<ActorMoviesEntity>>> getActorMovies(int personId);
   Future<Either<Failure, ActorEntity>> actorInfo(int personId);
   Future<Either<Failure, List<GenreEntity>>> getGenres();
   Future<Either<Failure, List<HomeEntity>>> getDiscoverMovies(

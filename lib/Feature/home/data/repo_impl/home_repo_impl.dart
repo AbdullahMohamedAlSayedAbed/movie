@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:movie/Feature/home/data/data_source/home_local_data_source.dart';
 import 'package:movie/Feature/home/data/data_source/home_remote_data_source.dart';
 import 'package:movie/Feature/home/domin/entities/actor_entity.dart';
+import 'package:movie/Feature/home/domin/entities/actor_movies_entity.dart';
 import 'package:movie/Feature/home/domin/entities/cast_entity.dart';
 import 'package:movie/Feature/home/domin/entities/home_entity.dart';
 import 'package:movie/Feature/home/domin/entities/movie_detailes_entity.dart';
@@ -243,7 +244,7 @@ class HomeRepoImpl implements HomeRepository {
     try {
       List<GenreEntity>? genres =
           homeLocalDataSource.getGenresMoviesFromCache(NameHiveBox.genres);
-      if (genres == null &&genres!.isEmpty) {
+      if (genres == null && genres!.isEmpty) {
         genres = await homeRemoteDataSource.getGenres();
         saveGenresMoviesData(genres, NameHiveBox.genres);
       }
@@ -272,10 +273,24 @@ class HomeRepoImpl implements HomeRepository {
   }
 
   @override
-  Future<Either<Failure, ActorEntity>> actorInfo(int personId) async{
+  Future<Either<Failure, ActorEntity>> actorInfo(int personId) async {
     try {
-      ActorEntity actor =await homeRemoteDataSource.actorInfo(personId);
+      ActorEntity actor = await homeRemoteDataSource.actorInfo(personId);
       return right(actor);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDiorError(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<ActorMoviesEntity>>> getActorMovies(int personId) async {
+    try {
+      List<ActorMoviesEntity> actorMovies =
+          await homeRemoteDataSource.getActorMovies(personId);
+      return right(actorMovies);
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDiorError(e));

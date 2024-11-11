@@ -8,6 +8,7 @@ import 'package:movie/Feature/home/data/repo_impl/home_repo_impl.dart';
 import 'package:movie/Feature/home/domin/entities/home_entity.dart';
 import 'package:movie/Feature/home/domin/entities/movie_detailes_entity.dart';
 import 'package:movie/Feature/home/domin/repo/home_repo.dart';
+import 'package:movie/Feature/home/presentation/controller/actor_movies_cubit/actor_movies_cubit.dart';
 import 'package:movie/Feature/home/presentation/controller/casts_cubit/casts_cubit.dart';
 import 'package:movie/Feature/home/presentation/controller/get_genres_cubit/get_genres_cubit.dart';
 import 'package:movie/Feature/home/presentation/controller/movie_detail/movie_detail_cubit.dart';
@@ -74,6 +75,11 @@ void setupServiceLocator() {
   );
   getIt.registerFactory<GetGenresCubit>(
     () => GetGenresCubit(
+      getIt.get<HomeRepository>(),
+    ),
+  );
+  getIt.registerFactory<ActorMoviesCubit>(
+    () => ActorMoviesCubit(
       getIt.get<HomeRepository>(),
     ),
   );

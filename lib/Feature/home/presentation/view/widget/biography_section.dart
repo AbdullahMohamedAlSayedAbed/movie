@@ -17,7 +17,9 @@ class BiographySection extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         Text(
-          biography ?? 'No biography available.',
+          biography == null || biography!.isEmpty
+              ? 'No biography available.'
+              : biography!,
           style: AppStyles.styles18W500
               .copyWith(color: Colors.white70, height: 1.6),
           textAlign: TextAlign.justify,

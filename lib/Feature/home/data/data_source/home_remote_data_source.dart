@@ -1,10 +1,12 @@
 import 'package:movie/Feature/home/data/models/actor_model.dart';
+import 'package:movie/Feature/home/data/models/actor_movies_model.dart';
 import 'package:movie/Feature/home/data/models/casts_model.dart';
 import 'package:movie/Feature/home/data/models/home_model.dart';
 import 'package:movie/Feature/home/data/models/movie_details_model.dart';
 import 'package:movie/Feature/home/data/models/recommendation_model.dart';
 import 'package:movie/Feature/home/data/models/video_model.dart';
 import 'package:movie/Feature/home/domin/entities/actor_entity.dart';
+import 'package:movie/Feature/home/domin/entities/actor_movies_entity.dart';
 import 'package:movie/Feature/home/domin/entities/cast_entity.dart';
 import 'package:movie/Feature/home/domin/entities/home_entity.dart';
 import 'package:movie/Feature/home/domin/entities/movie_detailes_entity.dart';
@@ -23,6 +25,7 @@ abstract class BaseHomeRemoteDataSource {
   Future<List<RecommendationEntity>> getRecommendations(int movieId);
   Future<List<VideoEntity>> getVideos(int movieId);
   Future<List<CastEntity>> getCast(int movieId);
+  Future<List<ActorMoviesEntity>> getActorMovies(int movieId);
   Future<List<GenreEntity>> getGenres();
   Future<List<HomeEntity>> getDiscoverMovies({int page = 1, required int id});
   Future<ActorEntity> actorInfo(int id);
@@ -162,5 +165,16 @@ class HomeRemoteDataSource extends BaseHomeRemoteDataSource {
         await apiService.get(endPoint: ApiConstants.personActor(id));
     ActorEntity actor = ActorModel.fromJson(response);
     return actor;
+  }
+
+  @override
+  Future<List<ActorMoviesEntity>> getActorMovies(int movieId) async {
+    final response =
+        await apiService.get(endPoint: ApiConstants.personActorMovies(movieId));
+    List<ActorMoviesEntity> actorMovies =
+        (response['cast'] as List).map((movieData) {
+      return ActorMoviesModel.fromJson(movieData);
+    }).toList();
+    return actorMovies;
   }
 }

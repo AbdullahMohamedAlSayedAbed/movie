@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:movie/Feature/home/domin/entities/actor_entity.dart';
 import 'package:movie/Feature/home/presentation/view/widget/actor_profile_header.dart';
+import 'package:movie/Feature/home/presentation/view/widget/actors_movies_sections.dart';
 import 'package:movie/Feature/home/presentation/view/widget/address_section.dart';
 import 'package:movie/Feature/home/presentation/view/widget/biography_section.dart';
+import 'package:movie/core/utils/app_styles.dart';
 
 class ActorProfileScreen extends StatefulWidget {
   final ActorEntity actor;
@@ -42,17 +44,37 @@ class _ActorProfileScreenState extends State<ActorProfileScreen>
   Widget build(BuildContext context) {
     return FadeTransition(
       opacity: _fadeInAnimation,
-      child: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            ActorProfileHeader(actor: widget.actor),
-            const SizedBox(height: 20),
-            BiographySection(biography: widget.actor.biography),
-            const SizedBox(height: 20),
-            AddressSection(address: widget.actor.address),
-          ],
-        ),
+      child: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                children: [
+                  const SizedBox(height: 20),
+                  ActorProfileHeader(actor: widget.actor),
+                  const SizedBox(height: 20),
+                  Align(
+                      alignment: AlignmentDirectional.topStart,
+                      child:
+                          BiographySection(biography: widget.actor.biography)),
+                  const SizedBox(height: 20),
+                  AddressSection(address: widget.actor.address),
+                  const SizedBox(height: 20),
+                  Align(
+                    alignment: AlignmentDirectional.topStart,
+                    child: Text(
+                      'Movies',
+                      style: AppStyles.styles23W700,
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                ],
+              ),
+            ),
+          ),
+          const ActorsMoviesSections(),
+        ],
       ),
     );
   }

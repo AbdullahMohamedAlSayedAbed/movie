@@ -11,6 +11,7 @@ abstract class ApiConstants {
 
   static String movieDetails(int movieId) => 'movie/$movieId';
   static String personActor(int personId) => 'person/$personId';
+  static String personActorMovies(int personId) => 'person/$personId/movie_credits';
   static String getVideos(int movieId) => 'movie/$movieId/videos';
   static String recommendations(int movieId) =>
       'movie/$movieId/recommendations';

@@ -18,8 +18,11 @@ class AddressSection extends StatelessWidget {
             style: AppStyles.styles23W700,
           ),
           const SizedBox(height: 8),
-          Text(address ?? 'Address not available.',
-              style:  AppStyles.styles18W500.copyWith(color: Colors.white70)),
+          Text(
+              address == null || address!.isEmpty
+                  ? 'Address not available.'
+                  : address!,
+              style: AppStyles.styles18W500.copyWith(color: Colors.white70)),
         ],
       ),
     );

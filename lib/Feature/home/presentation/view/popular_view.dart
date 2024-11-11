@@ -18,3 +18,4 @@ class PopularView extends StatelessWidget {
         ));
   }
 }
+

@@ -45,3 +45,4 @@ final class ActorInfoFailure extends CastsState {
   @override
   List<Object> get props => [errMessage];
 }
+
