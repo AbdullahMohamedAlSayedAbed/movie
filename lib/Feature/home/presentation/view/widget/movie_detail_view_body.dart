@@ -14,7 +14,7 @@ class MovieDetailViewBody extends StatelessWidget {
         const AllDetailsMovie(),
         const SliverToBoxAdapter(child: ActorsListView()),
         SliverPadding(
-          padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 24.0),
+          padding: const EdgeInsets.fromLTRB(16.0, 4, 16.0, 24.0),
           sliver: SliverToBoxAdapter(
             child: Text("more like this".toUpperCase(),
                 style: AppStyles.styles16W500),

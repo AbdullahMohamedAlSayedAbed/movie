@@ -4,7 +4,6 @@ import 'package:movie/Feature/home/domin/entities/home_entity.dart';
 import 'package:movie/Feature/home/presentation/controller/popular_movies/popular_movies_cubit.dart';
 import 'package:movie/Feature/home/presentation/view/widget/custom_loading_carousel_slider.dart';
 import 'package:movie/Feature/home/presentation/view/widget/popular_and_top_rated_card_movie.dart';
-import 'package:movie/core/utils/app_styles.dart';
 import 'package:movie/core/utils/functions/build_show_toast_functions.dart';
 import 'package:movie/core/widgets/custom_error_widget.dart';
 

@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie/Feature/home/presentation/controller/casts_cubit/casts_cubit.dart';
 import 'package:movie/Feature/home/presentation/view/widget/cast_item_image_loading.dart';
 import 'package:movie/Feature/home/presentation/view/widget/details_actors_item.dart';
-import 'package:movie/core/utils/app_styles.dart';
 import 'package:movie/core/widgets/custom_error_widget.dart';
 
 class ActorsListView extends StatelessWidget {
@@ -18,7 +17,7 @@ class ActorsListView extends StatelessWidget {
             return Padding(
               padding: const EdgeInsets.only(left: 15, bottom: 15),
               child: SizedBox(
-                height: 100,
+                height: 135,
                 child: ListView.separated(
                   separatorBuilder: (context, index) => const SizedBox(
                     width: 15,
@@ -28,21 +27,15 @@ class ActorsListView extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return ActorsItem(
                       profilePath: state.casts[index].profilePath,
+                      name: state.casts[index].name,
                     );
                   },
                 ),
               ),
             );
           } else {
-            return const Center(
-              child: Padding(
-                padding: EdgeInsets.all(22),
-                child: Text(
-                  'Sorry ,No Cast For This',
-                  style: AppStyles.styles18W500,
-                ),
-              ),
-            );
+            return const CustomErrorWidget(
+                errMessage: 'Sorry ,No Cast For This');
           }
         } else if (state is CastsFailure) {
           return CustomErrorWidget(errMessage: state.errMessage);
