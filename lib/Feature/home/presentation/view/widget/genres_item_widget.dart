@@ -19,11 +19,10 @@ class _GenresItemWidgetState extends State<GenresItemWidget>
   late AnimationController _controller;
   late Animation<Color?> _colorAnimation;
   late Animation<double> _scaleAnimation;
-
+  int index = 0;
   @override
   void initState() {
     super.initState();
-
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 1),
@@ -31,7 +30,7 @@ class _GenresItemWidgetState extends State<GenresItemWidget>
 
     _colorAnimation = ColorTween(
       begin: AppColor.primaryColor,
-      end: AppColor.secondaryColor,
+      end: Colors.red,
     ).animate(_controller);
     _scaleAnimation = Tween<double>(
       begin: 1.0,

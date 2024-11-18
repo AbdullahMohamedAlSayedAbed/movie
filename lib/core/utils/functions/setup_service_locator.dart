@@ -1,6 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:movie/Feature/actors/data/data_source.dart/person_local_data_source.dart';
+import 'package:movie/Feature/actors/data/data_source.dart/person_remote_data_source.dart';
+import 'package:movie/Feature/actors/data/repo_impl.dart/person_repo_impl.dart';
+import 'package:movie/Feature/actors/domin/entities/person_entity.dart';
+import 'package:movie/Feature/actors/domin/repo/person_repo.dart';
+import 'package:movie/Feature/actors/presentation/controllers/person_popular_cubit/person_popular_cubit.dart';
+import 'package:movie/Feature/actors/presentation/controllers/person_search_cubit/person_search_cubit.dart';
 import 'package:movie/Feature/favourite/data/favourite_local_data_source.dart';
 import 'package:movie/Feature/favourite/presentation/controllers/favorite_cubit/favourite_cubit.dart';
 import 'package:movie/Feature/home/data/data_source/home_local_data_source.dart';
@@ -123,4 +130,23 @@ void setupServiceLocator() {
   getIt.registerLazySingleton<SearchRepoImpl>(() => SearchRepoImpl(
         getIt.get<SearchRemoteData>(),
       ));
+  getIt.registerLazySingleton<PersonRemoteDataSource>(
+      () => PersonRemoteDataSourceImpl(
+            getIt.get<ApiService>(),
+          ));
+  getIt.registerLazySingleton<PersonRepo>(() => PersonRepoImpl(
+        personLocalDataSource: PersonLocalDataSource(
+            timestampsBox: Hive.box<int>(NameHiveBox.timestampsPersonBox)),
+        personRemoteDataSource: getIt.get<PersonRemoteDataSource>(),
+      ));
+  getIt.registerFactory<PersonSearchCubit>(
+    () => PersonSearchCubit(
+      getIt.get<PersonRepo>(),
+    ),
+  );
+  getIt.registerFactory<PersonPopularCubit>(
+    () => PersonPopularCubit(
+      getIt.get<PersonRepo>(),
+    ),
+  );
 }

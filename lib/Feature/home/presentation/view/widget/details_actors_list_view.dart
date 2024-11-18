@@ -5,6 +5,7 @@ import 'package:movie/Feature/home/presentation/view/actor_info_view.dart';
 import 'package:movie/Feature/home/presentation/view/widget/cast_item_image_loading.dart';
 import 'package:movie/Feature/home/presentation/view/widget/details_actors_item.dart';
 import 'package:movie/core/widgets/custom_error_widget.dart';
+import 'package:movie/core/widgets/custom_loading.dart';
 
 class ActorsListView extends StatelessWidget {
   const ActorsListView({super.key});
@@ -59,11 +60,24 @@ class ActorsListView extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.only(left: 15, bottom: 15),
             child: SizedBox(
-              height: 100,
+              height: 130,
               child: ListView.separated(
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
-                    return const CastItemImageLoading();
+                    return Column(
+                      children: [
+                        const CastItemImageLoading(),
+                        const SizedBox(height: 10),
+                        CustomLoading(
+                          enabled: true,
+                          child: Container(
+                            color: Colors.grey.withOpacity(0.3),
+                            width: 100,
+                            height: 20,
+                          ),
+                        ),
+                      ],
+                    );
                   },
                   separatorBuilder: (context, index) => const SizedBox(
                         width: 15,

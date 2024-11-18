@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie/Feature/actors/presentation/views/persons_view.dart';
 import 'package:movie/Feature/favourite/presentation/views/favourite_view.dart';
 import 'package:movie/Feature/home/presentation/view/home_view.dart';
 import 'package:movie/Feature/search/presentation/views/search_view_body_bloc_provider.dart';
@@ -14,6 +15,7 @@ class _SimpleBottomNavigationState extends State<SimpleBottomNavigation> {
   int _selectedIndex = 0;
   final List<Widget> _pages = [
     const HomeView(),
+    const PersonsView(),
     const FavoritesView(),
     const SearchViewBodyBlocProvider(),
   ];
@@ -42,6 +44,11 @@ const _navBarItems = [
     icon: Icon(Icons.home_outlined),
     activeIcon: Icon(Icons.home_rounded),
     label: 'Home',
+  ),
+  BottomNavigationBarItem(
+    icon: Icon(Icons.people_outline),
+    activeIcon: Icon(Icons.people_rounded),
+    label: 'Actors',
   ),
   BottomNavigationBarItem(
     icon: Icon(Icons.bookmark_border_outlined),

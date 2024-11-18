@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie/Feature/home/presentation/controller/actor_movies_cubit/actor_movies_cubit.dart';
-import 'package:movie/Feature/home/presentation/view/widget/actor_profile_screen.dart';
 import 'package:movie/Feature/home/presentation/view/widget/actors_movies_item.dart';
 import 'package:movie/core/widgets/custom_error_widget.dart';
 

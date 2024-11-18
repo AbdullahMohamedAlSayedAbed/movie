@@ -8,6 +8,14 @@ class CastItemImageLoading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const CustomLoading(enabled: true, child: CircleAvatar(radius: 50));
+    return CustomLoading(
+        enabled: true,
+        child: Container(
+          width: 100,
+          height: 100,
+          decoration: BoxDecoration(
+              color: Colors.grey.withOpacity(0.3),
+              borderRadius: BorderRadius.circular(50)),
+        ));
   }
 }

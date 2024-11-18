@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:movie/Feature/home/domin/entities/actor_movies_entity.dart';
 import 'package:movie/Feature/home/presentation/view/functions/navigate_movie_detail_view.dart';
 import 'package:movie/Feature/home/presentation/view/widget/actor_details_movies.dart';
-import 'package:movie/Feature/home/presentation/view/widget/actor_profile_screen.dart';
 import 'package:movie/Feature/home/presentation/view/widget/image_popular_and_top_rated_widget.dart';
 import 'package:movie/core/utils/app_color.dart';
 

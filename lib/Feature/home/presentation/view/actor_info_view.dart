@@ -22,7 +22,7 @@ class ActorInfoView extends StatelessWidget {
         ),
       ],
       child: Scaffold(
-        appBar: buildAppBar(title: name),
+        appBar: buildAppBar(title: 'Actor Information'),
         body: SafeArea(child: ActorInfoViewBody(id: id)),
       ),
     );

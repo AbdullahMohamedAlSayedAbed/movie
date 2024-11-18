@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie/Feature/home/presentation/controller/popular_movies/popular_movies_cubit.dart';
 import 'package:movie/Feature/home/presentation/view/widget/custom_loading_carousel_slider.dart';
 import 'package:movie/Feature/home/presentation/view/widget/item_list_view_widget.dart';
-import 'package:movie/core/utils/app_styles.dart';
 import 'package:movie/core/widgets/custom_error_widget.dart';
 
 class CustomListViewHorizontalPopular extends StatelessWidget {

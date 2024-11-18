@@ -6,6 +6,8 @@ abstract class ApiConstants {
   static const popular = 'movie/popular';
   static const topRated = 'movie/top_rated';
   static const search = 'search/movie';
+  static const searchActors = 'search/person';
+  static const personPopular = 'person/popular';
   static const String genres = 'genre/movie/list';
   static const String discover = 'discover/movie';
 

@@ -30,7 +30,7 @@ class ActorProfileHeader extends StatelessWidget {
                   radius: 100,
                 )),
                 imageUrl: ApiConstants.imageUrl(actor.profilePath ?? ''),
-                errorWidget: (context, url, error) => const Icon(Icons.error),
+                errorWidget: (context, url, error) => const Icon(Icons.person,size: 150),
               ),
             ),
           ),
