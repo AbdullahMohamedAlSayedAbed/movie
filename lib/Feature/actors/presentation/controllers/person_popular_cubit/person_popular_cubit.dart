@@ -8,10 +8,38 @@ part 'person_popular_state.dart';
 class PersonPopularCubit extends Cubit<PersonPopularState> {
   PersonPopularCubit(this.personRepo) : super(PersonPopularInitial());
   final PersonRepo personRepo;
-  Future<void> getPersonPopular(int page) async {
+int currentPage = 1; 
+  bool isLoading = false;
+  bool hasMore = true; 
+  Future<void> getPersonPopular() async {
     emit(PersonPopularLoading());
-    final result = await personRepo.getPersonPopular(page);
+    final result = await personRepo.getPersonPopular();
     result.fold((failure) => emit(PersonPopularFailure(failure.message)),
         (actors) => emit(PersonPopularSuccess(actors)));
+  }
+
+Future<void> fetchMorePersons() async {
+    if (!hasMore || isLoading) return;
+
+    isLoading = true;
+    emit(PersonPopularPaginationLoading());
+    final result =
+        await personRepo.getPersonPopularAndPagination(++currentPage);
+
+    result.fold(
+      (failure) {
+        emit(PersonPopularPaginationFailure(failure.message));
+        isLoading = false;
+      },
+      (newPersons) {
+        if (newPersons.isEmpty) {
+          hasMore = false;
+        } else {
+          currentPage++;
+          emit(PersonPopularSuccess(newPersons));
+        }
+        isLoading = false;
+      },
+    );
   }
 }

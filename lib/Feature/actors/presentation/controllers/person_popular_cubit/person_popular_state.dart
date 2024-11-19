@@ -10,11 +10,11 @@ sealed class PersonPopularState extends Equatable {
 final class PersonPopularInitial extends PersonPopularState {}
 
 final class PersonPopularSuccess extends PersonPopularState {
-  final List<PersonEntity> personPopularList;
+  final List<PersonEntity>? personPopularList;
 
   const PersonPopularSuccess(this.personPopularList);
   @override
-  List<Object> get props => [personPopularList];
+  List<Object> get props => [personPopularList?? []];
 }
 
 final class PersonPopularFailure extends PersonPopularState {
@@ -27,3 +27,13 @@ final class PersonPopularFailure extends PersonPopularState {
 }
 
 final class PersonPopularLoading extends PersonPopularState {}
+final class PersonPopularPaginationFailure extends PersonPopularState {
+  final String errMessage;
+
+  const PersonPopularPaginationFailure(this.errMessage);
+
+  @override
+  List<Object> get props => [errMessage];
+}
+
+final class PersonPopularPaginationLoading extends PersonPopularState {}

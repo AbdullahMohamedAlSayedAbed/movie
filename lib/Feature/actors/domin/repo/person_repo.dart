@@ -5,5 +5,6 @@ import 'package:movie/core/errors/failure.dart';
 abstract class PersonRepo {
   Future<Either<Failure, List<PersonEntity>>> getPersonsSearch(
       {required String query});
-  Future<Either<Failure, List<PersonEntity>>> getPersonPopular(int page);
+  Future<Either<Failure, List<PersonEntity>>> getPersonPopular();
+  Future<Either<Failure, List<PersonEntity>>> getPersonPopularAndPagination(int page);
 }

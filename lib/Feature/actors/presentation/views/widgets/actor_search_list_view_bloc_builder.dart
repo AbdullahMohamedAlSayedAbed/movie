@@ -14,12 +14,15 @@ class ActorSearchListViewBlocBuilder extends StatelessWidget {
     return BlocBuilder<PersonSearchCubit, PersonSearchState>(
       builder: (context, state) {
         if (state is PersonSearchSuccess) {
+          if (state.personList.isEmpty) {
+            return const CustomErrorWidget(errMessage: 'no actors found');
+          }
           return ActorSearchListViewSeparated(
               personSearchList: state.personList);
         } else if (state is PersonSearchFailure) {
           print(state.errMessage);
           return CustomErrorWidget(errMessage: state.errMessage);
-        } else  {
+        } else {
           return const LinearProgressIndicator();
         }
       },

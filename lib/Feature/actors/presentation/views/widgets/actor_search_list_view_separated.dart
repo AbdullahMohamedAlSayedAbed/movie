@@ -35,7 +35,9 @@ class ActorSearchListViewSeparated extends StatelessWidget {
               tag: personSearchList[index].id.toString(),
               child: ActorsItem(
                 profilePath: personSearchList[index].profilePath??
-                    personSearchList[index].knownFor[0].posterPath,
+              (personSearchList[index].knownFor.isNotEmpty
+                  ? personSearchList[index].knownFor[0].posterPath
+                  : ''),
                 name: personSearchList[index].name,
               ),
             ),

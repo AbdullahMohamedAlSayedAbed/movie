@@ -12,6 +12,10 @@ class PersonLocalDataSource {
   Future<void> savePerson(List<PersonEntity> personList) async {
     personBox.addAll(personList);
   }
+  Future<void> saveAndClearPerson(List<PersonEntity> personList) async {
+    await personBox.clear();
+    personBox.addAll(personList);
+  }
 
   PersonEntity? getPerson(int id) {
     return personBox.get(id);

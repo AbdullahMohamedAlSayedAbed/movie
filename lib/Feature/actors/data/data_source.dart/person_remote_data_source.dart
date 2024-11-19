@@ -5,7 +5,8 @@ import 'package:movie/core/utils/api_service.dart';
 
 abstract class PersonRemoteDataSource {
   Future<List<PersonEntity>> getSearchPersons({required String query});
-  Future<List<PersonEntity>> getPopularPersons(int page);
+  Future<List<PersonEntity>> getPopularPersons();
+  Future<List<PersonEntity>> getPopularPersonsAndPagination(int page);
 }
 
 class PersonRemoteDataSourceImpl extends PersonRemoteDataSource {
@@ -23,7 +24,16 @@ class PersonRemoteDataSourceImpl extends PersonRemoteDataSource {
   }
 
   @override
-  Future<List<PersonEntity>> getPopularPersons(int page) async {
+  Future<List<PersonEntity>> getPopularPersons() async {
+    final response = await apiService.get(endPoint: ApiConstants.personPopular);
+    List<PersonEntity> personPopularList = (response['results'] as List)
+        .map((e) => PersonModel.fromJson(e) as PersonEntity)
+        .toList();
+    return personPopularList;
+  }
+  
+  @override
+  Future<List<PersonEntity>> getPopularPersonsAndPagination(int page) async{
     final response = await apiService.getAndPagination(endPoint: ApiConstants.personPopular,page: page);
     List<PersonEntity> personPopularList = (response['results'] as List)
         .map((e) => PersonModel.fromJson(e) as PersonEntity)

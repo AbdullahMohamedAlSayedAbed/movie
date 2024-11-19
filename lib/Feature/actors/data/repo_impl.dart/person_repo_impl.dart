@@ -38,7 +38,7 @@ class PersonRepoImpl extends PersonRepo {
   }
 
   @override
-  Future<Either<Failure, List<PersonEntity>>> getPersonPopular(int page) async {
+  Future<Either<Failure, List<PersonEntity>>> getPersonPopular() async {
     bool isConnected = await checkInternetConnection();
     int? lastUpdate = personLocalDataSource
         .getLastUpdateTimestamp(PersonLocalDataSource.personTimestampKey);
@@ -52,13 +52,40 @@ class PersonRepoImpl extends PersonRepo {
     try {
       if (isConnected) {
         final List<PersonEntity> personList =
-            await personRemoteDataSource.getPopularPersons(page);
-        await personLocalDataSource.savePerson(personList);
+            await personRemoteDataSource.getPopularPersons();
+        await personLocalDataSource.saveAndClearPerson(personList);
         return right(personList);
       } else {
         final List<PersonEntity> personList =
             personLocalDataSource.getAllPersons();
 
+        if (personList.isNotEmpty) {
+          return right(personList);
+        } else {
+          return left(ServerFailure(
+              "No internet connection and no cached data available."));
+        }
+      }
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDiorError(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<PersonEntity>>> getPersonPopularAndPagination(
+      int page) async {
+    bool isConnected = await checkInternetConnection();
+    try {
+      if (isConnected) {
+        List<PersonEntity> personList =
+            await personRemoteDataSource.getPopularPersonsAndPagination(page);
+        await personLocalDataSource.savePerson(personList);
+        return right(personList);
+      } else {
+        List<PersonEntity>? personList = personLocalDataSource.getAllPersons();
         if (personList.isNotEmpty) {
           return right(personList);
         } else {
