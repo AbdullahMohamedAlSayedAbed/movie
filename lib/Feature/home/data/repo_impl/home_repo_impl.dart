@@ -244,7 +244,7 @@ class HomeRepoImpl implements HomeRepository {
     try {
       List<GenreEntity>? genres =
           homeLocalDataSource.getGenresMoviesFromCache(NameHiveBox.genres);
-      if (genres == null && genres!.isEmpty) {
+      if (genres == null || genres.isEmpty) {
         genres = await homeRemoteDataSource.getGenres();
         saveGenresMoviesData(genres, NameHiveBox.genres);
       }
