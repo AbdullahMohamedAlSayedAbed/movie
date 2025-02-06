@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie/Feature/home/presentation/view/widget/popular_and_top_rated_card_movie.dart';
 import 'package:movie/Feature/search/presentation/controller/search_cubit.dart';
 import 'package:movie/Feature/search/presentation/views/widgets/custom_search_text_field.dart';
 import 'package:movie/Feature/search/presentation/views/widgets/search_result_list_view.dart';

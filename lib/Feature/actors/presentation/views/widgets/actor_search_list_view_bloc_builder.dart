@@ -20,7 +20,6 @@ class ActorSearchListViewBlocBuilder extends StatelessWidget {
           return ActorSearchListViewSeparated(
               personSearchList: state.personList);
         } else if (state is PersonSearchFailure) {
-          print(state.errMessage);
           return CustomErrorWidget(errMessage: state.errMessage);
         } else {
           return const LinearProgressIndicator();

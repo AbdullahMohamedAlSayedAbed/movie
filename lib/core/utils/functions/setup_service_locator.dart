@@ -4,7 +4,6 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:movie/Feature/actors/data/data_source.dart/person_local_data_source.dart';
 import 'package:movie/Feature/actors/data/data_source.dart/person_remote_data_source.dart';
 import 'package:movie/Feature/actors/data/repo_impl.dart/person_repo_impl.dart';
-import 'package:movie/Feature/actors/domin/entities/person_entity.dart';
 import 'package:movie/Feature/actors/domin/repo/person_repo.dart';
 import 'package:movie/Feature/actors/presentation/controllers/person_popular_cubit/person_popular_cubit.dart';
 import 'package:movie/Feature/actors/presentation/controllers/person_search_cubit/person_search_cubit.dart';

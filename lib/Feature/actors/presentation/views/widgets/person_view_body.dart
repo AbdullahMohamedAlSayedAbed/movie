@@ -16,7 +16,6 @@ class PersonViewBody extends StatelessWidget {
         onNotification: (ScrollNotification notification) {
           if (notification.metrics.pixels >=
               notification.metrics.maxScrollExtent - 400) {
-            print("Triggering fetchMorePersons");
             context.read<PersonPopularCubit>().fetchMorePersons();
           }
           return false;
