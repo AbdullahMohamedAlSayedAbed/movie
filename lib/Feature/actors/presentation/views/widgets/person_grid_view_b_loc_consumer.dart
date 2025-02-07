@@ -32,7 +32,8 @@ class _PersonGridViewBLocConsumerState
             personEntity.addAll(state.personPopularList!);
           });
         }
-      }, builder: (context, state) {
+      },
+      builder: (context, state) {
         if (personEntity.isNotEmpty ||
             state is PersonPopularPaginationLoading ||
             state is PersonPopularPaginationFailure) {

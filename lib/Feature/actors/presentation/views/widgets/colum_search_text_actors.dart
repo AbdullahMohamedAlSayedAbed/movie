@@ -15,14 +15,12 @@ class ColumSearchTextActors extends StatelessWidget {
       children: [
         CustomSearchTextField(
           onChanged: (value) {
-
             context
                 .read<PersonSearchCubit>()
                 .getPersonsSearch(query: value.isEmpty ? 'A' : value);
           },
         ),
         const SizedBox(height: 10),
-
         const ActorSearchListViewBlocBuilder(),
       ],
     );

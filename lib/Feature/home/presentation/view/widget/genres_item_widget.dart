@@ -3,15 +3,10 @@ import 'package:movie/core/utils/app_color.dart';
 import 'package:movie/core/utils/app_styles.dart';
 
 class GenresItemWidget extends StatefulWidget {
-  const GenresItemWidget({
-    super.key,
-    required this.title,
-  });
-
+  const GenresItemWidget({super.key, required this.title});
   final String title;
-
   @override
-  _GenresItemWidgetState createState() => _GenresItemWidgetState();
+  State<GenresItemWidget> createState() => _GenresItemWidgetState();
 }
 
 class _GenresItemWidgetState extends State<GenresItemWidget>
@@ -65,14 +60,14 @@ class _GenresItemWidgetState extends State<GenresItemWidget>
               gradient: LinearGradient(
                 colors: [
                   _colorAnimation.value!,
-                  AppColor.secondaryColor.withOpacity(0.5),
+                  AppColor.secondaryColor.withValues(alpha: 0.5),
                 ],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
               ),
               boxShadow: [
                 BoxShadow(
-                  color: _colorAnimation.value!.withOpacity(0.4),
+                  color: _colorAnimation.value!.withValues(alpha: 0.4),
                   spreadRadius: 3,
                   blurRadius: 10,
                   offset: const Offset(2, 4),

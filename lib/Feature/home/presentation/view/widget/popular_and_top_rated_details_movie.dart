@@ -32,7 +32,7 @@ class PopularAndTopRatedDetailsMovie extends StatelessWidget {
                   horizontal: 8.0,
                 ),
                 decoration: BoxDecoration(
-                  color: Color(0xffFF7878),
+                  color: const Color(0xffFF7878),
                   borderRadius: BorderRadius.circular(4.0),
                 ),
                 child: Text(

@@ -26,8 +26,7 @@ class HomeView extends StatelessWidget {
               getIt<TopRatedMoviesCubit>()..getTopRatedMovies(),
         ),
         BlocProvider(
-          create: (context) =>
-              getIt<GetGenresCubit>()..getGenres(),
+          create: (context) => getIt<GetGenresCubit>()..getGenres(),
         ),
       ],
       child: const HomeViewBody(),

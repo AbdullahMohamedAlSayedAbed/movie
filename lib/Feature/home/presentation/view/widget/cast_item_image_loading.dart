@@ -14,7 +14,7 @@ class CastItemImageLoading extends StatelessWidget {
           width: 100,
           height: 100,
           decoration: BoxDecoration(
-              color: Colors.grey.withOpacity(0.3),
+              color: Colors.grey.withValues(alpha: 0.3),
               borderRadius: BorderRadius.circular(50)),
         ));
   }

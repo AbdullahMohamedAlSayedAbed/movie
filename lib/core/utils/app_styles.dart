@@ -58,7 +58,7 @@ abstract class AppStyles {
       Shadow(
         offset: const Offset(1.0, 1.0),
         blurRadius: 3.0,
-        color: Colors.black.withOpacity(0.7),
+        color: Colors.black.withValues(alpha: .7),
       ),
     ],
   );

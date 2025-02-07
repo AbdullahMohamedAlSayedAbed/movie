@@ -30,7 +30,8 @@ class ActorProfileHeader extends StatelessWidget {
                   radius: 100,
                 )),
                 imageUrl: ApiConstants.imageUrl(actor.profilePath ?? ''),
-                errorWidget: (context, url, error) => const Icon(Icons.person,size: 150),
+                errorWidget: (context, url, error) =>
+                    const Icon(Icons.person, size: 150),
               ),
             ),
           ),
@@ -45,7 +46,7 @@ class ActorProfileHeader extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Text('Birthday: ${actor.birthday ?? 'N/A'}',
-                style:  AppStyles.styles18W500.copyWith(color: Colors.white70)),
+                style: AppStyles.styles18W500.copyWith(color: Colors.white70)),
           ],
         ),
       ],

@@ -20,13 +20,13 @@ class ActorSearchListViewSeparated extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         itemCount: personSearchList.length,
         itemBuilder: (context, index) {
-          return  InkWell(
+          return InkWell(
             onTap: () {
               Navigator.push(context, MaterialPageRoute(
                 builder: (context) {
                   return ActorInfoView(
                     id: personSearchList[index].id,
-                    name: personSearchList[index].name??'no name',
+                    name: personSearchList[index].name ?? 'no name',
                   );
                 },
               ));
@@ -34,10 +34,10 @@ class ActorSearchListViewSeparated extends StatelessWidget {
             child: Hero(
               tag: personSearchList[index].id.toString(),
               child: ActorsItem(
-                profilePath: personSearchList[index].profilePath??
-              (personSearchList[index].knownFor.isNotEmpty
-                  ? personSearchList[index].knownFor[0].posterPath
-                  : ''),
+                profilePath: personSearchList[index].profilePath ??
+                    (personSearchList[index].knownFor.isNotEmpty
+                        ? personSearchList[index].knownFor[0].posterPath
+                        : ''),
                 name: personSearchList[index].name,
               ),
             ),

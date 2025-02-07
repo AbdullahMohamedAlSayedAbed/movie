@@ -11,13 +11,13 @@ class DiscoverLoadingWidget extends StatelessWidget {
           AspectRatio(
             aspectRatio: 2 / 3,
             child: Container(
-              color: Colors.grey.withOpacity(.7), 
+              color: Colors.grey.withValues(alpha: .7),
             ),
           ),
           const SizedBox(height: 10),
           Container(
             height: 30,
-            color: Colors.grey.withOpacity(.7), 
+            color: Colors.grey.withValues(alpha: .7),
           ),
         ],
       ),

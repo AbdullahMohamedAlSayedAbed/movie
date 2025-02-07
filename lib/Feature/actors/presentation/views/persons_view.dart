@@ -13,7 +13,8 @@ class PersonsView extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => getIt<PersonSearchCubit>()..getPersonsSearch(query: 'A'),
+          create: (context) =>
+              getIt<PersonSearchCubit>()..getPersonsSearch(query: 'A'),
         ),
         BlocProvider(
           create: (context) => getIt<PersonPopularCubit>()..getPersonPopular(),

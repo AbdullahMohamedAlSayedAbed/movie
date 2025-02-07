@@ -34,8 +34,7 @@ class _DiscoverViewBodyState extends State<DiscoverViewBody> {
             state is GetDiscoverPaginationLoading ||
             state is GetDiscoverPaginationFailure) {
           return DiscoverSuccessGridViewBuilder(
-              id: widget.id,
-              discoverMovies: discoverMovies);
+              id: widget.id, discoverMovies: discoverMovies);
         }
         if (state is GetDiscoverFailure) {
           return CustomErrorWidget(errMessage: state.errMessage);

@@ -71,7 +71,7 @@ class ActorsListView extends StatelessWidget {
                         CustomLoading(
                           enabled: true,
                           child: Container(
-                            color: Colors.grey.withOpacity(0.3),
+                            color: Colors.grey.withValues(alpha: 0.3),
                             width: 100,
                             height: 20,
                           ),

@@ -18,7 +18,7 @@ class CustomLoadingDiscoverGridView extends StatelessWidget {
         mainAxisSpacing: 8.0,
         crossAxisSpacing: 8.0,
       ),
-      itemCount: 9, 
+      itemCount: 9,
       itemBuilder: (context, index) {
         return const CustomLoading(
           enabled: true,
