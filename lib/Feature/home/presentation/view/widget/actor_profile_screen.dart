@@ -7,13 +7,13 @@ import 'package:movie/Feature/home/presentation/view/widget/biography_section.da
 import 'package:movie/core/utils/app_styles.dart';
 
 class ActorProfileScreen extends StatefulWidget {
-  final ActorEntity actor;
-
   const ActorProfileScreen({super.key, required this.actor});
-
+  final ActorEntity actor;
   @override
-  _ActorProfileScreenState createState() => _ActorProfileScreenState();
+  State<ActorProfileScreen> createState() => _ActorProfileScreenState();
 }
+
+
 
 class _ActorProfileScreenState extends State<ActorProfileScreen>
     with SingleTickerProviderStateMixin {

@@ -3,8 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie/Feature/favourite/presentation/controllers/favorite_cubit/favourite_cubit.dart';
 import 'package:movie/Feature/home/domin/entities/movie_detailes_entity.dart';
 
-
-
 class IconButtonFavoriteBlocBuilder extends StatelessWidget {
   const IconButtonFavoriteBlocBuilder({
     super.key,
@@ -22,7 +20,7 @@ class IconButtonFavoriteBlocBuilder extends StatelessWidget {
           return AnimatedSwitcher(
             duration: const Duration(milliseconds: 400),
             transitionBuilder: (child, animation) {
-              if (child.key == ValueKey<bool>(true)) {
+              if (child.key == const ValueKey<bool>(true)) {
                 // Transition when adding to favorite
                 return ScaleTransition(scale: animation, child: child);
               } else {

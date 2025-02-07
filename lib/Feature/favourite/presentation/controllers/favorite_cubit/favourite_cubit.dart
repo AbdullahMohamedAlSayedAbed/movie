@@ -9,9 +9,9 @@ class FavoriteCubit extends Cubit<FavoriteState> {
   FavoriteCubit(this.favoriteLocalDataSource) : super(FavoriteInitial());
   final FavoriteLocalDataSource favoriteLocalDataSource;
 
-  Future<void> getFavorites() async {
+  void getFavorites() {
     final List<MovieDetailsEntity> movies =
-        await favoriteLocalDataSource.getFavorites();
+        favoriteLocalDataSource.getFavorites();
     emit(FavoritesSuccess(movies));
   }
 

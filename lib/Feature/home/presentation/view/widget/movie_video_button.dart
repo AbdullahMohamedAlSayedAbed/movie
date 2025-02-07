@@ -5,7 +5,7 @@ class MovieVideoButton extends StatefulWidget {
   const MovieVideoButton({super.key});
 
   @override
-  _MovieVideoButtonState createState() => _MovieVideoButtonState();
+  State<MovieVideoButton> createState() => _MovieVideoButtonState();
 }
 
 class _MovieVideoButtonState extends State<MovieVideoButton>
